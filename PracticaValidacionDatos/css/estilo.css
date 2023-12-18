@@ -1,34 +1,37 @@
 #tabla {
-	background-color:#CCCCCC;
-	margin:0px auto;						
+	background-color: #CCCCCC;
+	margin: 0px auto;
 }
+
 #tabla td {
-	border: 1px solid black;			
+	border: 1px solid black;
 }
+
 h1 {
-	text-align: center;			
+	text-align: center;
 }
+
 .celdaverde {
 	background-color: #00FF66;
 	text-align: center;
 	font-weight: bold;
 	font-size: 1.3em;
-			
-}
-			
-#tablaInterna {
-	border-collapse: collapse;			
-}
-			
-#tablaInterna td {
-	border:none;
+
 }
 
-#centradoFecha{
+#tablaInterna {
+	border-collapse: collapse;
+}
+
+#tablaInterna td {
+	border: none;
+}
+
+#centradoFecha {
 	display: table;
 }
 
-.fecha{
+.fecha {
 	display: table-cell;
 	text-align: center;
 }
@@ -36,21 +39,21 @@ h1 {
 /* Estilos generales */
 #tabla {
 	width: 100%;
-  }
-  
-  /* Estilos para pantallas pequeñas */
-  @media only screen and (max-width: 600px) {
+}
+
+/* Estilos para pantallas pequeñas */
+@media only screen and (max-width: 600px) {
 	#tabla {
-	  width: 100%;
+		width: 100%;
 	}
-  
+
 	#tabla td {
-	  display: block;
-	  width: 100%;
+		display: block;
+		width: 100%;
 	}
-  
+
 	#tablaInterna {
-	  display: flex;
-	  flex-direction: column;
+		display: flex;
+		flex-direction: column;
 	}
-  }
+}

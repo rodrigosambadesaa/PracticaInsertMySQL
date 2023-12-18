@@ -55,7 +55,7 @@
 			}
 
 			if (!isset($provincia) || $provincia < 1 || $provincia > 4) {
-				echo "Debe seleccionar la <strong>provincia</strong><br />";
+				echo "Debe seleccionar la <strong>provincia</strong><br>";
 				$error = true;
 			} 
 			
@@ -64,7 +64,7 @@
 				$error = true;
 			}
 
-			if (!isset($codigo_postal) || !ctype_digit($codigo_postal) ||strlen($codigo_postal) != 5) {
+			if (!isset($codigo_postal) || !ctype_digit($codigo_postal) || strlen($codigo_postal) != 5) {
 				echo "El <strong>código postal</strong> ha de tener 5 dígitos <br>";
 				$error = true;
 			}

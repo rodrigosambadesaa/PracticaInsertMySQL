@@ -13,25 +13,25 @@
 					<td colspan="2">Datos de identificación</td>
 				</tr>
 				<tr>
-					<td>e-mail <font color="red">*</font></td>
+					<td><label for="email">e-mail <font color="red">*</font></label></td>
 					<td>						
 						<input id="email" name="correo" size="25" maxlength="320" required>
 					</td>
 				</tr>
 				<tr>
-					<td>Contraseña <font color="red">*</font> <br />(entre 4 y 20 caracteres)</td>
+					<td><label for="password">Contraseña <font color="red">*</font> <br>(entre 4 y 20 caracteres)</label></td>
 					<td>						
 						<input type="password" id="password" name="clave" size="25" maxlength="20" required>
 					</td>
 				</tr>
 				<tr>
-					<td>Repita contraseña <font color="red">*</font></td>
+					<td><label for="confirmPassword">Repita contraseña <font color="red">*</font></label></td>
 					<td> 
 						<input type="password" id="confirmPassword" name="clave_repe" size="25" maxlength="20" required>
 					</td>
 				</tr>
 				<tr>
-					<td>Nombre y apellidos <font color="red">*</font></td>
+					<td><label for="nombre">Nombre y apellidos <font color="red">*</font></label></td>
 					<td> 
 						<input id="nombre" name="nombre" size="25" maxlength="80" required>
 					</td>
@@ -40,31 +40,31 @@
 					<td colspan="2">Dirección</td>
 				</tr>
 				<tr>
-					<td>Calle <font color="red">*</font></td>
+					<td><label for="direccionCalle">Calle <font color="red">*</font></label></td>
 					<td>
 						<input name="calle" id="direccionCalle" size="46" maxlength="40" required>
 					</td>
 				</tr>
 				<tr>
-					<td>Nº <font color="red">*</font></td>
+					<td><label for="direccionNumero">Nº <font color="red">*</font></label></td>
 					<td> 
 						<input name="numero" id="direccionNumero" size="6" maxlength="3" required>
 					</td>
 				</tr>
 				<tr>
-					<td>Piso</td>
+					<td><label for="direccionPiso">Piso</label></td>
 					<td> 
 						<input name="piso" id="direccionPiso" size="12" maxlength="20">
 					</td>
 				</tr>
 				<tr>
-					<td>Población <font color="red">*</font></td>
+					<td><label for="poblacion">Población <font color="red">*</font></label></td>
 					<td> 
 						<input name="poblacion" id="poblacion" size="25" maxlength="40" required>
 					</td>
 				</tr>
 				<tr>
-					<td>Provincia <font color="red">*</font></td>
+					<td><label for="provincia">Provincia <font color="red">*</font></label></td>
 					<td>
 						<select name="provincia" id="provincia" required>
 							<option value="0"></option>
@@ -76,7 +76,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Código Postal <font color="red">*</font></td>
+					<td><label for="codigoPostal">Código Postal <font color="red">*</font></label></td>
 					<td> 
 						<input name="codigo_postal" id="codigoPostal" size="9" maxlength="5" required>
 					</td>
@@ -85,7 +85,7 @@
 					<td colspan="2">Datos personales</td>
 				</tr>	
 				<tr>
-					<td>Estado civil <font color="red">*</font></td>
+					<td><label for="estadoCivil">Estado civil <font color="red">*</font></label></td>
 					<td> 
 						<select name="estado_civil" id="estadoCivil" required>
 							<option value="vacio"></option>
@@ -96,7 +96,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Fecha de nacimiento <font color="red">*</font></td>
+					<td><label for="fechaNacimiento">Fecha de nacimiento <font color="red">*</font></label></td>
 					<td> 
 						<div id="centradoFecha">
 							<div class="fecha">DD <br><input name="dia" id="fechaNacimientoDia" size="5" maxlength="2" required> / <br> día <br>
@@ -109,7 +109,7 @@
 					</td>					
 				</tr>
 				<tr>
-					<td>Página Web</td>
+					<td><label for="paginaWeb">Página Web</label></td>
 					<td> 
 						<input name="web" id="paginaWeb" size="46" maxlength="100">					
 					</td>					
@@ -117,30 +117,30 @@
 				<tr class="celdaverde">
 					<td colspan="2">Temas de interés (Debe seleccionar al menos un tema)</td>
 				</tr>
-				<tr>					
-					<td colspan="2" align="center">	
+				<tr>
+					<td colspan="2" align="center">
 						<table id="tablaInterna">
 							<tr>
-								<td><input type="checkbox" name="temas[]"/> Música</td>
-								<td><input type="checkbox" name="temas[]"/> Deportes</td>
-								<td><input type="checkbox" name="temas[]"/> Lectura</td>								
-							</tr>							
+								<td><input id="musica" type="checkbox" name="temas[]"/><label for="musica">Música</label></td>
+								<td><input id="deportes" type="checkbox" name="temas[]"/><label for="deportes">Deportes</label></td>
+								<td><input id="lectura" type="checkbox" name="temas[]"/><label for="lectura">Lectura</label></td>
+							</tr>
 							<tr>
-								<td><input type="checkbox" name="temas[]"/> Cine</td>
-								<td><input type="checkbox" name="temas[]"/> Teatro</td>
-								<td><input type="checkbox" name="temas[]"/> Coches</td>
-							</tr>							
+								<td><input id="cine"  type="checkbox" name="temas[]"/><label for="cine">Cine</label></td>
+								<td><input id="teatro" type="checkbox" name="temas[]"/><label for="teatro">Teatro</label></td>
+								<td><input id="coches" type="checkbox" name="temas[]"/><label for="coches">Coches</label></td>
+							</tr>
 							<tr>
-								<td><input type="checkbox" name="temas[]"/> Estética</td>
-								<td><input type="checkbox" name="temas[]"/> Móviles</td>
-								<td><input type="checkbox" name="temas[]"/> Viajes</td>
+								<td><input id="estetica" type="checkbox" name="temas[]"/><label for="estetica">Estética</label></td>
+								<td><input id="moviles" type="checkbox" name="temas[]"/><label for="moviles">Móviles</label></td>
+								<td><input id="viajes" type="checkbox" name="temas[]"/><label for="viajes">Viajes</label></td>
 							</tr>
 						</table>
 					</td>
-				</tr>				
+				</tr>
 				<tr align="center">
 					<td><input type="submit" value="Enviar"></td>
-					<td><input TYPE="reset" value="Borrar datos"></td>
+					<td><input type="reset" value="Borrar datos"></td>
 				</tr>				
 				<tr align="center">
 					<td colspan="2"><font color="red">* Datos obligatorios</font></td>
@@ -151,4 +151,5 @@
 		<script src="./js/validar.js"></script>
 	</body>
 </html>
+
 

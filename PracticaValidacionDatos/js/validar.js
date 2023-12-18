@@ -170,13 +170,13 @@ formulario.addEventListener('submit', function(event) {
         return;
     }
 
-    // // Validar que haya seleccionado al menos un tema
-    // const temasSeleccionados = formulario.querySelectorAll('input[name="tema"]:checked');
-    // if (temasSeleccionados.length === 0) {
-    //     alert('Por favor, selecciona al menos un tema');
-    //     return;
-    // }
 
-    // Si todas las validaciones son exitosas, enviar el formulario
+    // Validar que al menos un tema esté seleccionado
+    const temasSeleccionados = document.querySelectorAll('input[name="temas[]"]:checked');
+    if (temasSeleccionados.length === 0) {
+        alert('Por favor, selecciona al menos un tema');
+        return;
+    }
+
     formulario.submit();
 });
