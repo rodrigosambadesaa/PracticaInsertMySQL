@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<h1>FORMULARIO DE REGISTRO</h1>
-		<form method="POST" action="validar.php">
+		<form method="POST" action="validar.php" id="formulario">
 			<table id="tabla" >
 				<tr class="celdaverde" colspan="2">
 					<td colspan="2">Datos de identificación</td>
@@ -15,25 +15,25 @@
 				<tr>
 					<td>e-mail <font color="red">*</font></td>
 					<td>						
-						<input name="correo" size="25" maxlength="320" />
+						<input id="email" name="correo" size="25" maxlength="320" required>
 					</td>
 				</tr>
 				<tr>
 					<td>Contraseña <font color="red">*</font> <br />(entre 4 y 20 caracteres)</td>
 					<td>						
-						<input type="password" name="clave" size="25" maxlength="20" />
+						<input type="password" id="password" name="clave" size="25" maxlength="20" required>
 					</td>
 				</tr>
 				<tr>
 					<td>Repita contraseña <font color="red">*</font></td>
 					<td> 
-						<input type="password" name="clave_repe" size="25" maxlength="20" />
+						<input type="password" id="confirmPassword" name="clave_repe" size="25" maxlength="20" required>
 					</td>
 				</tr>
 				<tr>
 					<td>Nombre y apellidos <font color="red">*</font></td>
 					<td> 
-						<input name="nombre" size="25" maxlength="80" />
+						<input id="nombre" name="nombre" size="25" maxlength="80" required>
 					</td>
 				</tr>
 				<tr class="celdaverde">
@@ -42,31 +42,31 @@
 				<tr>
 					<td>Calle <font color="red">*</font></td>
 					<td>
-						<input name="calle" size="46" maxlength="40"/>
+						<input name="calle" id="direccionCalle" size="46" maxlength="40" required>
 					</td>
 				</tr>
 				<tr>
 					<td>Nº <font color="red">*</font></td>
 					<td> 
-						<input name="numero" size="6" maxlength="3" />
+						<input name="numero" id="direccionNumero" size="6" maxlength="3" required>
 					</td>
 				</tr>
 				<tr>
 					<td>Piso</td>
 					<td> 
-						<input name="piso" size="12" maxlength="20" />
+						<input name="piso" id="direccionPiso" size="12" maxlength="20">
 					</td>
 				</tr>
 				<tr>
 					<td>Población <font color="red">*</font></td>
 					<td> 
-						<input name="poblacion" size="25" maxlength="40" />
+						<input name="poblacion" id="poblacion" size="25" maxlength="40" required>
 					</td>
 				</tr>
 				<tr>
 					<td>Provincia <font color="red">*</font></td>
 					<td>
-						<select name="provincia">
+						<select name="provincia" id="provincia" required>
 							<option value="0"></option>
 							<option value="1">A Coruña</option>
 							<option value="2">Lugo</option>
@@ -78,7 +78,7 @@
 				<tr>
 					<td>Código Postal <font color="red">*</font></td>
 					<td> 
-						<input name="codigo_postal" size="9" maxlength="5" />
+						<input name="codigo_postal" id="codigoPostal" size="9" maxlength="5" required>
 					</td>
 				</tr>
 				<tr class="celdaverde">
@@ -87,7 +87,7 @@
 				<tr>
 					<td>Estado civil <font color="red">*</font></td>
 					<td> 
-						<select name="estado_civil">
+						<select name="estado_civil" id="estadoCivil" required>
 							<option value="vacio"></option>
 							<option value="c">Casada/o</option>
 							<option value="s">Soltera/o</option>							
@@ -99,11 +99,11 @@
 					<td>Fecha de nacimiento <font color="red">*</font></td>
 					<td> 
 						<div id="centradoFecha">
-							<div class="fecha">DD <br><input name="dia" size="5" maxlength="2"> / <br> día <br>
+							<div class="fecha">DD <br><input name="dia" id="fechaNacimientoDia" size="5" maxlength="2" required> / <br> día <br>
 							</div>  
-							<div class="fecha">MM <br> <input name="mes" size="5" maxlength="2"> / <br> mes <br>
+							<div class="fecha">MM <br> <input name="mes" id="fechaNacimientoMes" size="5" maxlength="2" required> / <br> mes <br>
 							</div>						 
-							<div class="fecha">AAAA <br><input name="anho" size="5" maxlength="4"> <br> año	
+							<div class="fecha">AAAA <br><input name="anho" id="fechaNacimientoAnio" size="5" maxlength="4" required> <br> año	
 							</div>	
 						</div>
 					</td>					
@@ -111,7 +111,7 @@
 				<tr>
 					<td>Página Web</td>
 					<td> 
-						<input name="web" size="46" maxlength="100">					
+						<input name="web" id="paginaWeb" size="46" maxlength="100">					
 					</td>					
 				</tr>
 				<tr class="celdaverde">
@@ -121,32 +121,34 @@
 					<td colspan="2" align="center">	
 						<table id="tablaInterna">
 							<tr>
-								<td><input type="checkbox" NAME="temas[]"/> Música</td>
-								<td><input type="checkbox" NAME="temas[]"/> Deportes</td>
-								<td><input type="checkbox" NAME="temas[]"/> Lectura</td>								
+								<td><input type="checkbox" name="temas[]"/> Música</td>
+								<td><input type="checkbox" name="temas[]"/> Deportes</td>
+								<td><input type="checkbox" name="temas[]"/> Lectura</td>								
 							</tr>							
 							<tr>
-								<td><input type="checkbox" NAME="temas[]"/> Cine</td>
-								<td><input type="checkbox" NAME="temas[]"/> Teatro</td>
-								<td><input type="checkbox" NAME="temas[]"/> Coches</td>
+								<td><input type="checkbox" name="temas[]"/> Cine</td>
+								<td><input type="checkbox" name="temas[]"/> Teatro</td>
+								<td><input type="checkbox" name="temas[]"/> Coches</td>
 							</tr>							
 							<tr>
-								<td><input type="checkbox" NAME="temas[]"/> Estética</td>
-								<td><input type="checkbox" NAME="temas[]"/> Móviles</td>
-								<td><input type="checkbox" NAME="temas[]"/> Viajes</td>
+								<td><input type="checkbox" name="temas[]"/> Estética</td>
+								<td><input type="checkbox" name="temas[]"/> Móviles</td>
+								<td><input type="checkbox" name="temas[]"/> Viajes</td>
 							</tr>
 						</table>
 					</td>
 				</tr>				
 				<tr align="center">
-					<td><input TYPE="submit" VALUE="Enviar"></td>
-					<td><input TYPE="reset" VALUE="Borrar datos"></td>
+					<td><input type="submit" value="Enviar"></td>
+					<td><input TYPE="reset" value="Borrar datos"></td>
 				</tr>				
 				<tr align="center">
 					<td colspan="2"><font color="red">* Datos obligatorios</font></td>
 				</tr>
 			</table>
 		</form>
+
+		<script src="./js/validar.js"></script>
 	</body>
 </html>
 
