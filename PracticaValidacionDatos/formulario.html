@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title>FORMULARIO DE REGISTRO</title>
+		<link rel="stylesheet" type="text/css" href="estilo.css">
+	</head>
+	<body>
+		<h1>FORMULARIO DE REGISTRO</h1>
+		<form method="POST" action="validar.php">
+			<table id="tabla" >
+				<tr class="celdaverde" colspan="2">
+					<td colspan="2">Datos de identificación</td>
+				</tr>
+				<tr>
+					<td>e-mail <font color="red">*</font></td>
+					<td>						
+						<input name="correo" size="25" maxlength="320" />
+					</td>
+				</tr>
+				<tr>
+					<td>Contraseña <font color="red">*</font> <br />(entre 4 y 20 caracteres)</td>
+					<td>						
+						<input type="password" name="clave" size="25" maxlength="20" />
+					</td>
+				</tr>
+				<tr>
+					<td>Repita contraseña <font color="red">*</font></td>
+					<td> 
+						<input type="password" name="clave_repe" size="25" maxlength="20" />
+					</td>
+				</tr>
+				<tr>
+					<td>Nombre y apellidos <font color="red">*</font></td>
+					<td> 
+						<input name="nombre" size="25" maxlength="80" />
+					</td>
+				</tr>
+				<tr class="celdaverde">
+					<td colspan="2">Dirección</td>
+				</tr>
+				<tr>
+					<td>Calle <font color="red">*</font></td>
+					<td>
+						<input name="calle" size="46" maxlength="40"/>
+					</td>
+				</tr>
+				<tr>
+					<td>Nº <font color="red">*</font></td>
+					<td> 
+						<input name="numero" size="6" maxlength="3" />
+					</td>
+				</tr>
+				<tr>
+					<td>Piso</td>
+					<td> 
+						<input name="piso" size="12" maxlength="20" />
+					</td>
+				</tr>
+				<tr>
+					<td>Población <font color="red">*</font></td>
+					<td> 
+						<input name="poblacion" size="25" maxlength="40" />
+					</td>
+				</tr>
+				<tr>
+					<td>Provincia <font color="red">*</font></td>
+					<td>
+						<select name="provincia">
+							<option value="0"></option>
+							<option value="1">A Coruña</option>
+							<option value="2">Lugo</option>
+							<option value="3">Ourense</option>
+							<option value="4">Pontevedra</option>							
+						</select>						
+					</td>
+				</tr>
+				<tr>
+					<td>Código Postal <font color="red">*</font></td>
+					<td> 
+						<input name="codigo_postal" size="9" maxlength="5" />
+					</td>
+				</tr>
+				<tr class="celdaverde">
+					<td colspan="2">Datos personales</td>
+				</tr>	
+				<tr>
+					<td>Estado civil <font color="red">*</font></td>
+					<td> 
+						<select name="estado_civil">
+							<option value="vacio"></option>
+							<option value="c">Casada/o</option>
+							<option value="s">Soltera/o</option>							
+							<option value="v">Viuda/o</option>							
+						</select>		
+					</td>
+				</tr>
+				<tr>
+					<td>Fecha de nacimiento <font color="red">*</font></td>
+					<td> 
+						<div id="centradoFecha">
+							<div class="fecha">DD <br><input name="dia" size="5" maxlength="2"> / <br> día <br>
+							</div>  
+							<div class="fecha">MM <br> <input name="mes" size="5" maxlength="2"> / <br> mes <br>
+							</div>						 
+							<div class="fecha">AAAA <br><input name="anho" size="5" maxlength="4"> <br> año	
+							</div>	
+						</div>
+					</td>					
+				</tr>
+				<tr>
+					<td>Página Web</td>
+					<td> 
+						<input name="web" size="46" maxlength="100">					
+					</td>					
+				</tr>
+				<tr class="celdaverde">
+					<td colspan="2">Temas de interés (Debe seleccionar al menos un tema)</td>
+				</tr>
+				<tr>					
+					<td colspan="2" align="center">	
+						<table id="tablaInterna">
+							<tr>
+								<td><input type="checkbox" NAME="temas[]"/> Música</td>
+								<td><input type="checkbox" NAME="temas[]"/> Deportes</td>
+								<td><input type="checkbox" NAME="temas[]"/> Lectura</td>								
+							</tr>							
+							<tr>
+								<td><input type="checkbox" NAME="temas[]"/> Cine</td>
+								<td><input type="checkbox" NAME="temas[]"/> Teatro</td>
+								<td><input type="checkbox" NAME="temas[]"/> Coches</td>
+							</tr>							
+							<tr>
+								<td><input type="checkbox" NAME="temas[]"/> Estética</td>
+								<td><input type="checkbox" NAME="temas[]"/> Móviles</td>
+								<td><input type="checkbox" NAME="temas[]"/> Viajes</td>
+							</tr>
+						</table>
+					</td>
+				</tr>				
+				<tr align="center">
+					<td><input TYPE="submit" VALUE="Enviar"></td>
+					<td><input TYPE="reset" VALUE="Borrar datos"></td>
+				</tr>				
+				<tr align="center">
+					<td colspan="2"><font color="red">* Datos obligatorios</font></td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
+
