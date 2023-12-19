@@ -2,7 +2,7 @@
 const formulario = document.getElementById('formulario');
 
 // Agregar un evento de escucha para el envío del formulario
-formulario.addEventListener('submit', function(event) {
+formulario.addEventListener('submit', function (event) {
     // Detener el envío del formulario
     event.preventDefault();
 
@@ -28,7 +28,7 @@ formulario.addEventListener('submit', function(event) {
     if (!emailRegex.test(email) || email.length < 3 || email.length > 320) {
         alert('Por favor, introduce un email válido entre 3 y 320 caracteres');
         return;
-    }    
+    }
 
     // Validar la contraseña
     if (password.length < 4 || password.length > 20) {
@@ -161,12 +161,13 @@ formulario.addEventListener('submit', function(event) {
     if (fechaNacimiento >= fechaActual) {
         alert('Por favor, introduce una fecha de nacimiento anterior a la fecha actual');
         return;
-    }   
+    }
 
     // Validar la página web
-    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
-    if (paginaWeb.trim() !== '' && !urlRegex.test(paginaWeb)) {
-        alert('Por favor, introduce una URL válida para tu página web');
+    const urlregex = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/;
+    const esURLValida = urlregex.test(paginaWeb);
+    if (!esURLValida) {
+        alert("URL no válida");
         return;
     }
 
