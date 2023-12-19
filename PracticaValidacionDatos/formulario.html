@@ -1,155 +1,170 @@
 <!DOCTYPE html>
 <html lang="es">
-	<head>
-		<meta charset="utf-8">
-		<title>FORMULARIO DE REGISTRO</title>
-		<link rel="stylesheet" type="text/css" href="./css/estilo.css">
-	</head>
-	<body>
-		<h1>FORMULARIO DE REGISTRO</h1>
-		<form method="POST" action="./php/validar.php" id="formulario">
-			<table id="tabla" >
-				<tr class="celdaverde" colspan="2">
-					<td colspan="2">Datos de identificación</td>
-				</tr>
-				<tr>
-					<td><label for="email">e-mail <font color="red">*</font></label></td>
-					<td>						
-						<input id="email" name="correo" size="25" maxlength="320" required>
-					</td>
-				</tr>
-				<tr>
-					<td><label for="password">Contraseña <font color="red">*</font> <br>(entre 4 y 20 caracteres)</label></td>
-					<td>						
-						<input type="password" id="password" name="clave" size="25" maxlength="20" required>
-					</td>
-				</tr>
-				<tr>
-					<td><label for="confirmPassword">Repita contraseña <font color="red">*</font></label></td>
-					<td> 
-						<input type="password" id="confirmPassword" name="clave_repe" size="25" maxlength="20" required>
-					</td>
-				</tr>
-				<tr>
-					<td><label for="nombre">Nombre y apellidos <font color="red">*</font></label></td>
-					<td> 
-						<input id="nombre" name="nombre" size="25" maxlength="80" required>
-					</td>
-				</tr>
-				<tr class="celdaverde">
-					<td colspan="2">Dirección</td>
-				</tr>
-				<tr>
-					<td><label for="direccionCalle">Calle <font color="red">*</font></label></td>
-					<td>
-						<input name="calle" id="direccionCalle" size="46" maxlength="40" required>
-					</td>
-				</tr>
-				<tr>
-					<td><label for="direccionNumero">Nº <font color="red">*</font></label></td>
-					<td> 
-						<input name="numero" id="direccionNumero" size="6" maxlength="3" required>
-					</td>
-				</tr>
-				<tr>
-					<td><label for="direccionPiso">Piso</label></td>
-					<td> 
-						<input name="piso" id="direccionPiso" size="12" maxlength="20">
-					</td>
-				</tr>
-				<tr>
-					<td><label for="poblacion">Población <font color="red">*</font></label></td>
-					<td> 
-						<input name="poblacion" id="poblacion" size="25" maxlength="40" required>
-					</td>
-				</tr>
-				<tr>
-					<td><label for="provincia">Provincia <font color="red">*</font></label></td>
-					<td>
-						<select name="provincia" id="provincia" required>
-							<option value="0"></option>
-							<option value="1">A Coruña</option>
-							<option value="2">Lugo</option>
-							<option value="3">Ourense</option>
-							<option value="4">Pontevedra</option>							
-						</select>						
-					</td>
-				</tr>
-				<tr>
-					<td><label for="codigoPostal">Código Postal <font color="red">*</font></label></td>
-					<td> 
-						<input name="codigo_postal" id="codigoPostal" size="9" maxlength="5" required>
-					</td>
-				</tr>
-				<tr class="celdaverde">
-					<td colspan="2">Datos personales</td>
-				</tr>	
-				<tr>
-					<td><label for="estadoCivil">Estado civil <font color="red">*</font></label></td>
-					<td> 
-						<select name="estado_civil" id="estadoCivil" required>
-							<option value="vacio"></option>
-							<option value="c">Casada/o</option>
-							<option value="s">Soltera/o</option>							
-							<option value="v">Viuda/o</option>							
-						</select>		
-					</td>
-				</tr>
-				<tr>
-					<td><label for="fechaNacimiento">Fecha de nacimiento <font color="red">*</font></label></td>
-					<td> 
-						<div id="centradoFecha">
-							<div class="fecha">DD <br><input name="dia" id="fechaNacimientoDia" size="5" maxlength="2" required> / <br> día <br>
-							</div>  
-							<div class="fecha">MM <br> <input name="mes" id="fechaNacimientoMes" size="5" maxlength="2" required> / <br> mes <br>
-							</div>						 
-							<div class="fecha">AAAA <br><input name="anho" id="fechaNacimientoAnio" size="5" maxlength="4" required> <br> año	
-							</div>	
+
+<head>
+	<meta charset="utf-8">
+	<title>FORMULARIO DE REGISTRO</title>
+	<link rel="stylesheet" type="text/css" href="./css/estilo.css">
+</head>
+
+<body>
+	<h1>FORMULARIO DE REGISTRO</h1>
+	<form method="POST" action="./php/validar.php" id="formulario">
+		<table id="tabla">
+			<tr class="celdaverde" colspan="2">
+				<td colspan="2">Datos de identificación</td>
+			</tr>
+			<tr>
+				<td><label for="email">e-mail <font color="red">*</font></label></td>
+				<td>
+					<input id="email" name="correo" size="25" maxlength="320" required>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="password">Contraseña <font color="red">*</font> <br>(entre 4 y 20 caracteres)</label>
+				</td>
+				<td>
+					<input type="password" id="password" name="clave" size="25" maxlength="20" required>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="confirmPassword">Repita contraseña <font color="red">*</font></label></td>
+				<td>
+					<input type="password" id="confirmPassword" name="clave_repe" size="25" maxlength="20" required>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="nombre">Nombre y apellidos <font color="red">*</font></label></td>
+				<td>
+					<input id="nombre" name="nombre" size="25" maxlength="80" required>
+				</td>
+			</tr>
+			<tr class="celdaverde">
+				<td colspan="2">Dirección</td>
+			</tr>
+			<tr>
+				<td><label for="direccionCalle">Calle <font color="red">*</font></label></td>
+				<td>
+					<input name="calle" id="direccionCalle" size="46" maxlength="40" required>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="direccionNumero">Nº <font color="red">*</font></label></td>
+				<td>
+					<input name="numero" id="direccionNumero" size="6" maxlength="3" required>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="direccionPiso">Piso</label></td>
+				<td>
+					<input name="piso" id="direccionPiso" size="12" maxlength="20">
+				</td>
+			</tr>
+			<tr>
+				<td><label for="poblacion">Población <font color="red">*</font></label></td>
+				<td>
+					<input name="poblacion" id="poblacion" size="25" maxlength="40" required>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="provincia">Provincia <font color="red">*</font></label></td>
+				<td>
+					<select name="provincia" id="provincia" required>
+						<option value="0"></option>
+						<option value="1">A Coruña</option>
+						<option value="2">Lugo</option>
+						<option value="3">Ourense</option>
+						<option value="4">Pontevedra</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="codigoPostal">Código Postal <font color="red">*</font></label></td>
+				<td>
+					<input name="codigo_postal" id="codigoPostal" size="9" maxlength="5" required>
+				</td>
+			</tr>
+			<tr class="celdaverde">
+				<td colspan="2">Datos personales</td>
+			</tr>
+			<tr>
+				<td><label for="estadoCivil">Estado civil <font color="red">*</font></label></td>
+				<td>
+					<select name="estado_civil" id="estadoCivil" required>
+						<option value="vacio"></option>
+						<option value="c">Casada/o</option>
+						<option value="s">Soltera/o</option>
+						<option value="v">Viuda/o</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="fechaNacimiento">Fecha de nacimiento <font color="red">*</font></label></td>
+				<td>
+					<div id="centradoFecha">
+						<div class="fecha">DD <br><input name="dia" id="fechaNacimientoDia" size="5" maxlength="2"
+								required> / <br> día <br>
 						</div>
-					</td>					
-				</tr>
-				<tr>
-					<td><label for="paginaWeb">Página Web</label></td>
-					<td> 
-						<input name="web" id="paginaWeb" size="46" maxlength="100">					
-					</td>					
-				</tr>
-				<tr class="celdaverde">
-					<td colspan="2">Temas de interés (Debe seleccionar al menos un tema)</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<table id="tablaInterna">
-							<tr>
-								<td><input id="musica" type="checkbox" name="temas[]"/><label for="musica">Música</label></td>
-								<td><input id="deportes" type="checkbox" name="temas[]"/><label for="deportes">Deportes</label></td>
-								<td><input id="lectura" type="checkbox" name="temas[]"/><label for="lectura">Lectura</label></td>
-							</tr>
-							<tr>
-								<td><input id="cine"  type="checkbox" name="temas[]"/><label for="cine">Cine</label></td>
-								<td><input id="teatro" type="checkbox" name="temas[]"/><label for="teatro">Teatro</label></td>
-								<td><input id="coches" type="checkbox" name="temas[]"/><label for="coches">Coches</label></td>
-							</tr>
-							<tr>
-								<td><input id="estetica" type="checkbox" name="temas[]"/><label for="estetica">Estética</label></td>
-								<td><input id="moviles" type="checkbox" name="temas[]"/><label for="moviles">Móviles</label></td>
-								<td><input id="viajes" type="checkbox" name="temas[]"/><label for="viajes">Viajes</label></td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-				<tr align="center">
-					<td><input type="submit" value="Enviar"></td>
-					<td><input type="reset" value="Borrar datos"></td>
-				</tr>				
-				<tr align="center">
-					<td colspan="2"><font color="red">* Datos obligatorios</font></td>
-				</tr>
-			</table>
-		</form>
+						<div class="fecha">MM <br> <input name="mes" id="fechaNacimientoMes" size="5" maxlength="2"
+								required> / <br> mes <br>
+						</div>
+						<div class="fecha">AAAA <br><input name="anho" id="fechaNacimientoAnio" size="5" maxlength="4"
+								required> <br> año
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="paginaWeb">Página Web</label></td>
+				<td>
+					<input name="web" id="paginaWeb" size="46" maxlength="100">
+				</td>
+			</tr>
+			<tr class="celdaverde">
+				<td colspan="2">Temas de interés (Debe seleccionar al menos un tema)</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<table id="tablaInterna">
+						<tr>
+							<td><input id="musica" type="checkbox" name="temas[]" /><label for="musica">Música</label>
+							</td>
+							<td><input id="deportes" type="checkbox" name="temas[]" /><label
+									for="deportes">Deportes</label></td>
+							<td><input id="lectura" type="checkbox" name="temas[]" /><label
+									for="lectura">Lectura</label></td>
+						</tr>
+						<tr>
+							<td><input id="cine" type="checkbox" name="temas[]" /><label for="cine">Cine</label></td>
+							<td><input id="teatro" type="checkbox" name="temas[]" /><label for="teatro">Teatro</label>
+							</td>
+							<td><input id="coches" type="checkbox" name="temas[]" /><label for="coches">Coches</label>
+							</td>
+						</tr>
+						<tr>
+							<td><input id="estetica" type="checkbox" name="temas[]" /><label
+									for="estetica">Estética</label></td>
+							<td><input id="moviles" type="checkbox" name="temas[]" /><label
+									for="moviles">Móviles</label></td>
+							<td><input id="viajes" type="checkbox" name="temas[]" /><label for="viajes">Viajes</label>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr align="center">
+				<td><input type="submit" value="Enviar"></td>
+				<td><input type="reset" value="Borrar datos"></td>
+			</tr>
+			<tr align="center">
+				<td colspan="2">
+					<font color="red">* Datos obligatorios</font>
+				</td>
+			</tr>
+		</table>
+	</form>
 
-		<script src="./js/validar.js"></script>
-	</body>
+	<script src="./js/validar.js"></script>
+</body>
+
 </html>
-
-
