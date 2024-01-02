@@ -163,12 +163,13 @@ formulario.addEventListener('submit', function (event) {
         return;
     }
 
-    // Validar la página web
-    const urlregex = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/;
-    const esURLValida = urlregex.test(paginaWeb);
-    if (!esURLValida) {
-        alert("URL no válida");
-        return;
+    if (paginaWeb.trim() !== '') {
+        try {
+            const paginaWebUrl = new URL(paginaWeb);
+        } catch (error) {
+            alert('Por favor, introduce una URL válida');
+            return;
+        }
     }
 
 

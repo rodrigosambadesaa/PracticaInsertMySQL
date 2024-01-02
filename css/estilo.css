@@ -57,3 +57,11 @@ h1 {
 		flex-direction: column;
 	}
 }
+
+.red {
+	color: red;
+}
+
+#filaTemas {
+	text-align: center;
+}
