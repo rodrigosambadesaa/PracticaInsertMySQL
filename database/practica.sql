@@ -30,8 +30,10 @@ SET time_zone = "+00:00";
 
 CREATE DATABASE IF NOT EXISTS `practica_insert_mysql` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-DROP TABLE IF EXISTS `temas`;
-CREATE TABLE IF NOT EXISTS `temas` (
+
+
+DROP TABLE IF EXISTS `practica_insert_mysql`.`temas`;
+CREATE TABLE IF NOT EXISTS `practica_insert_mysql`.`temas` (
   `correo` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `tema` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`correo`,`tema`)
@@ -41,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `temas` (
 -- Volcado de datos para la tabla `temas`
 --
 
-INSERT INTO `temas` (`correo`, `tema`) VALUES
+INSERT INTO `practica_insert_mysql`.`temas` (`correo`, `tema`) VALUES
 ('usuario@dominio.com', 'Cine'),
 ('usuario@dominio.com', 'Estética'),
 ('usuario@dominio.com', 'Música'),
@@ -58,8 +60,8 @@ INSERT INTO `temas` (`correo`, `tema`) VALUES
 -- Estructura de tabla para la tabla `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
-CREATE TABLE IF NOT EXISTS `usuario` (
+DROP TABLE IF EXISTS `practica_insert_mysql`.`usuario`;
+CREATE TABLE IF NOT EXISTS `practica_insert_mysql`.`usuario` (
   `correo` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `clave` char(32) COLLATE utf8_spanish_ci NOT NULL,
   `nombre` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
@@ -79,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`correo`, `clave`, `nombre`, `calle`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`) VALUES
+INSERT INTO `practica_insert_mysql`.`usuario` (`correo`, `clave`, `nombre`, `calle`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`) VALUES
 ('usuario@dominio.com', 'ff11aae3a302e11c2c2dab902ee611ab', 'Anómimo Anómino Anónimo', 'Calle', 11, 'Piso', 'Población', '1', '11111', 'c', '1990-02-02', 'http://www.ejemplo.com'),
 ('usuario2@dominio.com', '31d8342ec88202a2f129bee5eb47c571', 'Anómimo Anómino Anónimo', 'Calle', 12, 'Piso', 'Población', '1', '12321', 's', '1991-12-12', '');
 COMMIT;
