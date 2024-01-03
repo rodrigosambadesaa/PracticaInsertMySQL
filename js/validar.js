@@ -172,7 +172,6 @@ formulario.addEventListener('submit', function (event) {
         }
     }
 
-
     // Validar que al menos un tema esté seleccionado
     const temasSeleccionados = document.querySelectorAll('input[name="temas[]"]:checked');
     if (temasSeleccionados.length === 0) {

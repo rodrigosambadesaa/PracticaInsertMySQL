@@ -125,12 +125,12 @@
 			Ajustamos, por tanto, la longitud de la contraseña en la base de datos a 32 caracteres */
 			/* //Esto es mejor que encriptarla directamente en la consulta, porque así nunca conservamos en la variable el valor original (texto plano) de la contraseña.
 			Siempre se guardará encriptada. Se ha escogido el algoritmo md5: https://es.wikipedia.org/wiki/MD5 */
-			$clave=hash("md5", $clave);
+			$clave = hash("md5", $clave);
 
 			/* Por razones de seguridad, una vez validados los datos destruimos la variable $clave_repe */
 			unset($clave_repe);
 
-			$sentencia_sql="INSERT INTO `practica_insert_mysql`.`usuario` (`correo`, `clave`, `nombre`, `calle`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`) VALUES ('$correo', '$clave', '$nombre', '$calle', '$numero', '$piso', '$poblacion', '$provincia', '$codigo_postal', '$estado_civil', '$fecha_nacimiento', '$web');";
+			$sentencia_sql = "INSERT INTO `practica_insert_mysql`.`usuario` (`correo`, `clave`, `nombre`, `calle`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`) VALUES ('$correo', '$clave', '$nombre', '$calle', '$numero', '$piso', '$poblacion', '$provincia', '$codigo_postal', '$estado_civil', '$fecha_nacimiento', '$web');";
 
 			// Lanzamos la consulta insert
 			mysqli_query($conexion, $sentencia_sql) or die ("<strong>La inserción ha fallado, causa:</strong> " . mysqli_error($conexion));
