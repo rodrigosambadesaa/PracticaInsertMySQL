@@ -130,7 +130,7 @@
 
 			/* Tabla temas	
 			Recorrido del array de temas para la inserción */
-			foreach($temas as $tema) {
+			foreach ($temas as $tema) {
 				$sentencia_sql = "INSERT INTO `practica_insert_mysql`.`temas` (`correo`, `tema`) VALUES ('$correo', '$tema');";
 				// Lanzamos la consulta insert
 				mysqli_query($conexion, $sentencia_sql) or die ("<strong>La inserción ha fallado, causa:</strong> " . mysqli_error($conexion));
