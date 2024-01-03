@@ -40,13 +40,9 @@
 			$error = true;
 		}
 
-		if (isset($piso) && $piso != null) {
-			//El piso puede estar vacío
-			//Si no está vacío y su longitud no es correcta, hay error
-			if (strlen($piso) < 3 || strlen($piso) > 20) {
-				echo "El <strong>piso</strong> ha de tener entre 3 y 20 caracteres<br>";
-				$error = true;
-			}
+		if (isset($piso) && $piso != null && (strlen($piso) < 3 || strlen($piso) > 20)) {
+			echo "El <strong>piso</strong> ha de tener entre 3 y 20 caracteres<br>";
+			$error = true;
 		}
 
 		if (!isset($poblacion) || strlen($poblacion) < 3 || strlen($poblacion) > 40) {
@@ -84,20 +80,17 @@
 			$error = true;
 		}
 
-		if (isset($web) && $web != null) {
-			//Solo hay error si no está vacía y no es válida
-			if (filter_var($web, FILTER_VALIDATE_URL) === false) {
-				echo "La <strong>dirección web</strong> no es válida<br>";
-				$error = true;
-			}
+		if (isset($web) && $web != null && filter_var($web, FILTER_VALIDATE_URL) === false) {
+			echo "La <strong>dirección web</strong> no es válida<br>";
+			$error = true;
 		}
 
-		if (!isset($temas) || !is_array($temas) || count($temas) == 0) {
+		if (!isset($temas) || !is_array($temas) || count($temas) === 0) {
 			echo "No ha marcado ningún <strong>tema</strong><br>";
 			$error = true;
 		}
 
-		if ($error == true) {
+		if ($error) {
 			die(
 				"Debe corregir los errores. <a href='javascript:history.back();'>Volver</a>"
 			);
