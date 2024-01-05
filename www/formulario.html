@@ -74,17 +74,17 @@
 				</select>
 			</div>
 			<div>
-				<label>Fecha de nacimiento <span class="red">*</span></label>
-				<div id="centradoFecha">
-					<div class="fecha">
+				<label style="text-align: center;">Fecha de nacimiento <span class="red">*</span></label>
+				<div id="centradoFecha" style="display: flex; justify-content: center;"></div>
+					<div class="fecha" style="display: flex;">
 						<label for="fechaNacimientoDia">DD</label>
 						<input name="dia" id="fechaNacimientoDia" size="5" maxlength="2" required>
 					</div>
-					<div class="fecha">
+					<div class="fecha" style="display: flex;">
 						<label for="fechaNacimientoMes">MM</label>
 						<input name="mes" id="fechaNacimientoMes" size="5" maxlength="2" required>
 					</div>
-					<div class="fecha">
+					<div class="fecha" style="display: flex;">
 						<label for="fechaNacimientoAnio">AAAA</label>
 						<input name="anho" id="fechaNacimientoAnio" size="5" maxlength="4" required>
 					</div>
@@ -98,48 +98,56 @@
 		<fieldset>
 			<legend>Temas de interés (Debe seleccionar al menos un tema)</legend>
 			<div>
-				<input id="musica" type="checkbox" name="temas[]">
-				<label for="musica">Música</label>
-			</div>
-			<div>
-				<input id="deportes" type="checkbox" name="temas[]">
-				<label for="deportes">Deportes</label>
-			</div>
-			<div>
-				<input id="lectura" type="checkbox" name="temas[]">
-				<label for="lectura">Lectura</label>
-			</div>
-			<div>
-				<input id="cine" type="checkbox" name="temas[]">
-				<label for="cine">Cine</label>
-			</div>
-			<div>
-				<input id="teatro" type="checkbox" name="temas[]">
-				<label for="teatro">Teatro</label>
-			</div>
-			<div>
-				<input id="coches" type="checkbox" name="temas[]">
-				<label for="coches">Coches</label>
-			</div>
-			<div>
-				<input id="estetica" type="checkbox" name="temas[]">
-				<label for="estetica">Estética</label>
-			</div>
-			<div>
-				<input id="moviles" type="checkbox" name="temas[]">
-				<label for="moviles">Móviles</label>
-			</div>
-			<div>
-				<input id="viajes" type="checkbox" name="temas[]">
-				<label for="viajes">Viajes</label>
+				<div id="div-checkboxes">
+					<div class="checkbox-item">
+						<input id="musica" type="checkbox" name="temas[]">
+						<label for="musica">Música</label>
+					</div>
+					<div class="checkbox-item">
+						<input id="deportes" type="checkbox" name="temas[]">
+						<label for="deportes">Deportes</label>
+					</div>
+					<div class="checkbox-item">
+						<input id="lectura" type="checkbox" name="temas[]">
+						<label for="lectura">Lectura</label>
+					</div>
+					<div class="checkbox-item">
+						<input id="cine" type="checkbox" name="temas[]">
+						<label for="cine">Cine</label>
+					</div>
+					<div class="checkbox-item">
+						<input id="teatro" type="checkbox" name="temas[]">
+						<label for="teatro">Teatro</label>
+					</div>
+					<div class="checkbox-item">
+						<input id="coches" type="checkbox" name="temas[]">
+						<label for="coches">Coches</label>
+					</div>
+					<div class="checkbox-item">
+						<input id="estetica" type="checkbox" name="temas[]">
+						<label for="estetica">Estética</label>
+					</div>
+					<div class="checkbox-item">
+						<input id="moviles" type="checkbox" name="temas[]">
+						<label for="moviles">Móviles</label>
+					</div>
+					<div class="checkbox-item">
+						<input id="viajes" type="checkbox" name="temas[]">
+						<label for="viajes">Viajes</label>
+					</div>
+				</div>
 			</div>
 		</fieldset>
 		<div>
-			<input type="submit" value="Enviar">
-			<input type="reset" value="Borrar datos">
+			<div id="div-botones">
+				<input type="submit" value="Enviar">
+				<input type="reset" value="Borrar datos">
+			</div>
 		</div>
 		<div>
-			<span class="red">* Datos obligatorios</span>
+			<div id="div-datos-obligatorios">
+				<span class="red">* Datos obligatorios</span>
+			</div>
 		</div>
 	</form>
 

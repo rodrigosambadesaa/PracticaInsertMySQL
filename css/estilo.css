@@ -1,68 +1,71 @@
-#tabla {
-	background-color: #CCCCCC;
-	margin: 0px auto;
-}
-
-#tabla td {
-	border: 1px solid black;
-}
-
 body {
-	font-family: 'Arial', sans-serif;
+	font-family: Arial, sans-serif;
+	background-color: #f2f2f2;
 }
 
 h1 {
 	text-align: center;
-	font-family: 'Roboto', sans-serif;
+	color: #333;
 }
 
-.celdaverde {
-	background-color: #00FF66;
-	text-align: center;
+form {
+	width: 500px;
+	margin: 0 auto;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+legend {
 	font-weight: bold;
-	font-size: 1.3em;
+	margin-bottom: 10px;
 }
 
-#tablaInterna {
-	border-collapse: collapse;
+label {
+	display: block;
+	margin-bottom: 5px;
 }
 
-#tablaInterna td {
-	border: none;
-}
-
-#centradoFecha {
-	display: table;
-}
-
-.fecha {
-	display: table-cell;
-	text-align: center;
-}
-
-/* Estilos generales */
-#tabla {
+input[type="text"],
+input[type="password"],
+select {
 	width: 100%;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
 }
 
-/* Estilos para pantallas pequeñas */
-@media only screen and (max-width: 600px) {
-	#tabla {
-		width: 100%;
-	}
-
-	#tabla td {
-		display: block;
-		width: 100%;
-	}
-
-	#tablaInterna {
-		display: flex;
-		flex-direction: column;
-		flex-wrap: wrap; /* Added flex-wrap property */
-	}
+#div-datos-obligatorios {
+	text-align: center;
 }
 
 .red {
 	color: red;
+}
+
+input[type="submit"],
+input[type="reset"] {
+	background-color: #4CAF50;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+	background-color: #45a049;
+}
+
+#div-botones {
+	text-align: center;
+}
+
+#div-checkboxes {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
 }
