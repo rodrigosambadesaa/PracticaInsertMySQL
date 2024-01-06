@@ -6,8 +6,9 @@
 </head>
 <body>
 	<?php
-		$error = false;
 		extract($_POST); // Generación de las variables a partir de los datos recibidos del formulario.
+		// Validación de los datos recibidos del formulario.
+		$error = false;
 
 		if (!isset($correo) || strlen($correo) < 5 || strlen($correo) > 320) {
 			echo "El <strong>correo</strong> electrónico ha de tener entre 5 y 320 caracteres<br>";
