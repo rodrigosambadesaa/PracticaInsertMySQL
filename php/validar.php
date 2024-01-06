@@ -107,7 +107,7 @@
 			$conexion = mysqli_connect($servidor, $usuario, $contrasenha, $base_de_datos) or die ("Error:" . mysqli_connect_error());
 
 			//Especificación del sistema de caracteres a utilizar en la base de datos, para evitar problemas con ciertos caracteres
-			mysqli_query($conexion,"SET NAMES UTF8");
+			mysqli_query($conexion, "SET NAMES UTF8");
 
 			//Preparación de las consultas
 			//Tabla usuarios
