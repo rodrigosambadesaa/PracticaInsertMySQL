@@ -70,13 +70,13 @@
 			$error = true;
 		}
 
-		if (!isset($mes, $dia, $anho) || !ctype_digit($mes) || !ctype_digit($dia) || !ctype_digit($anho) || !checkdate($mes, $dia, $anho)) {
-			echo "La <strong>fecha</strong> de nacimiento no es correcta<br>";
+		if (!isset($fecha_nacimiento)) {
+			echo "Debe seleccionar la <strong>fecha de nacimiento</strong><br>";
 			$error = true;
-		} 
-		
-		if (mktime(0, 0, 0, $mes, $dia, $anho) > time()) {
-			echo "La <strong>fecha</strong> de nacimiento debe ser anterior a la actual<br>";
+		}
+
+		if ($fecha_nacimiento > date("Y-m-d")) {
+			echo "La <strong>fecha de nacimiento</strong> no puede ser posterior a la fecha actual<br>";
 			$error = true;
 		}
 

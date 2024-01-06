@@ -26,9 +26,8 @@ formulario.addEventListener('submit', function (event) {
     const provincia = document.getElementById('provincia').value;
     const codigoPostal = document.getElementById('codigoPostal').value;
     const estadoCivil = document.getElementById('estadoCivil').value;
-    const fechaNacimientoDia = document.getElementById('fechaNacimientoDia').value;
-    const fechaNacimientoMes = document.getElementById('fechaNacimientoMes').value;
-    const fechaNacimientoAnio = document.getElementById('fechaNacimientoAnio').value;
+    const fechaNacimiento = document.getElementById('fecha_nacimiento').value;
+    console.log(fechaNacimiento);
     const paginaWeb = document.getElementById('paginaWeb').value;
 
     let errorMessages = "";
@@ -142,32 +141,7 @@ formulario.addEventListener('submit', function (event) {
         error = true;
     }
 
-    // Validar que se haya ingresado una fecha de nacimiento
-    if (fechaNacimientoDia === '' || fechaNacimientoMes === '' || fechaNacimientoAnio === '') {
-        errorMessages += 'Por favor, introduce tu fecha de nacimiento<br>';
-        error = true;
-    }
-
-    // Validar que el día de la fecha de nacimiento sea un entero positivo de dos dígitos como máximo
-    if (isNaN(fechaNacimientoDia) || !Number.isInteger(Number(fechaNacimientoDia)) || fechaNacimientoDia <= 0 || fechaNacimientoDia > 31) {
-        errorMessages += 'Por favor, introduce un día de nacimiento válido<br>';
-        error = true;
-    }
-
-    // Validar que el mes de la fecha de nacimiento sea un entero positivo de dos dígitos como máximo
-    if (isNaN(fechaNacimientoMes) || !Number.isInteger(Number(fechaNacimientoMes)) || fechaNacimientoMes <= 0 || fechaNacimientoMes > 12) {
-        errorMessages += 'Por favor, introduce un mes de nacimiento válido<br>';
-        error = true;
-    }
-
-    // Validar que el año de la fecha de nacimiento sea un entero positivo de dos dígitos como máximo
-    if (isNaN(fechaNacimientoAnio) || !Number.isInteger(Number(fechaNacimientoAnio))) {
-        errorMessages += 'Por favor, introduce un año de nacimiento válido<br>';
-        error = true;
-    }
-
     // Validar que la fecha de nacimiento sea anterior a la fecha actual
-    const fechaNacimiento = new Date(fechaNacimientoAnio, fechaNacimientoMes - 1, fechaNacimientoDia);
     const fechaActual = new Date();
     if (fechaNacimiento >= fechaActual) {
         errorMessages += 'Por favor, introduce una fecha de nacimiento válida<br>';
