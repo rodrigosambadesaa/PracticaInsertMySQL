@@ -111,8 +111,6 @@
 
 			//Preparación de las consultas
 			//Tabla usuarios
-			//Preparación de la fecha para inserción en la base de datos
-			$fecha_nacimiento = "$anho-$mes-$dia";
 			//Encriptación de la contraseña.
 			/* IMPORTANTE: El string devuelto por la función hash siempre tiene una longitud de 32 caracteres.
 			Ajustamos, por tanto, la longitud de la contraseña en la base de datos a 32 caracteres */

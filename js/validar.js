@@ -27,7 +27,6 @@ formulario.addEventListener('submit', function (event) {
     const codigoPostal = document.getElementById('codigoPostal').value;
     const estadoCivil = document.getElementById('estadoCivil').value;
     const fechaNacimiento = document.getElementById('fecha_nacimiento').value;
-    console.log(fechaNacimiento);
     const paginaWeb = document.getElementById('paginaWeb').value;
 
     let errorMessages = "";
