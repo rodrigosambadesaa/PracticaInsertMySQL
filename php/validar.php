@@ -14,7 +14,7 @@
 			echo "El <strong>correo</strong> electrónico ha de tener entre 5 y 320 caracteres<br>";
 			$error = true;
 		} elseif (filter_var($correo, FILTER_VALIDATE_EMAIL) === false) {
-			echo "No es un <strong>correo</strong> electrónico válido<br>";
+			echo "No es un <strong>correo</strong> electrónico válido: <strong>$correo</strong><br>";
 			$error = true;
 		}
 
@@ -37,7 +37,7 @@
 		}
 
 		if (!isset($numero) || !ctype_digit($numero) || $numero <= 0) {
-			echo "El <strong>número</strong> no es válido<br>";
+			echo "El <strong>número</strong> no es válido: <strong>$numero</strong><br>";
 			$error = true;
 		}
 
@@ -77,12 +77,12 @@
 		}
 
 		if ($fecha_nacimiento > date("Y-m-d")) {
-			echo "La <strong>fecha de nacimiento</strong> no puede ser posterior a la fecha actual<br>";
+			echo "La <strong>fecha de nacimiento</strong> debe ser anterior a la fecha actual<br>";
 			$error = true;
 		}
 
 		if (isset($web) && $web != null && filter_var($web, FILTER_VALIDATE_URL) === false) {
-			echo "La <strong>dirección web</strong> no es válida<br>";
+			echo "La <strong>dirección web</strong> no es válida: <strong>$web</strong><br>";
 			$error = true;
 		}
 
@@ -92,9 +92,7 @@
 		}
 
 		if ($error) {
-			die(
-				"Debe corregir los errores. <a href='javascript:history.back();'>Volver</a>"
-			);
+			die("Debe corregir los errores. <a href='javascript:history.back();'>Volver</a>");
 		} else {
 			echo "<strong>Procesando registro...</strong><br>";
 			/* INSERCIÓN EN LA BASE DE DATOS */
