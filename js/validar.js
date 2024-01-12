@@ -21,6 +21,7 @@ formulario.addEventListener('submit', function (event) {
     const confirmPassword = document.getElementById('confirmPassword').value;
     const direccionCalle = document.getElementById('direccionCalle').value;
     const direccionBloque = document.getElementById('direccionBloque').value;
+    const direccionEscalera = document.getElementById('direccionEscalera').value;
     const direccionNumero = document.getElementById('direccionNumero').value;
     const direccionPiso = document.getElementById('direccionPiso').value;
     const poblacion = document.getElementById('poblacion').value;
@@ -79,6 +80,12 @@ formulario.addEventListener('submit', function (event) {
     // Validar que se haya ingresado un bloque de dirección
     if(direccionBloque.trim() !== '' && (direccionBloque.length < 1 || direccionBloque.length > 3)) {
         errorMessages += 'Por favor, introduce un bloque válido entre 3 y 20 caracteres<br>';
+        error = true;
+    }
+
+    // Validar que se haya ingresado una escalera de dirección
+    if (direccionEscalera.trim() !== '' && (direccionEscalera.length < 1 || direccionEscalera.length > 3)) {
+        errorMessages += 'Por favor, introduce una escalera válida entre 3 y 20 caracteres<br>';
         error = true;
     }
 
