@@ -66,26 +66,30 @@ CREATE TABLE IF NOT EXISTS `practica_insert_mysql`.`usuario` (
   `clave` char(32) COLLATE utf8_spanish_ci NOT NULL,
   `nombre` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
   `calle` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
-  `numero` int(2) NOT NULL,
-  `piso` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
-  `poblacion` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
-  `provincia` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
-  `codigo_postal` char(5) COLLATE utf8_spanish_ci NOT NULL,
-  `estado_civil` char(1) COLLATE utf8_spanish_ci NOT NULL,
-  `fecha_nacimiento` date NOT NULL,
-  `web` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  PRIMARY KEY (`correo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `usuario`
---
+    `bloque` varchar(3) COLLATE utf8_spanish_ci NOT NULL,  
+    `numero` int(2) NOT NULL,
+    `piso` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+    `escalera` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
 
-INSERT INTO `practica_insert_mysql`.`usuario` (`correo`, `clave`, `nombre`, `calle`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`) VALUES
-('usuario@dominio.com', 'ff11aae3a302e11c2c2dab902ee611ab', 'Anómimo Anómino Anónimo', 'Calle', 11, 'Piso', 'Población', '1', '11111', 'c', '1990-02-02', 'http://www.ejemplo.com'),
-('usuario2@dominio.com', '31d8342ec88202a2f129bee5eb47c571', 'Anómimo Anómino Anónimo', 'Calle', 12, 'Piso', 'Población', '1', '12321', 's', '1991-12-12', '');
-COMMIT;
+    `poblacion` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
+    `provincia` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
+    `codigo_postal` char(5) COLLATE utf8_spanish_ci NOT NULL,
+    `estado_civil` char(1) COLLATE utf8_spanish_ci NOT NULL,
+    `fecha_nacimiento` date NOT NULL,
+    `web` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+    PRIMARY KEY (`correo`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+  --
+  -- Volcado de datos para la tabla `usuario`
+  --
+
+  INSERT INTO `practica_insert_mysql`.`usuario` (`correo`, `clave`, `nombre`, `calle`, `numero`, `piso`, `escalera`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`) VALUES
+  ('usuario@dominio.com', 'ff11aae3a302e11c2c2dab902ee611ab', 'Anómimo Anómino Anónimo', 'Calle', 11, 'Piso', 'Escalera', 'Población', '1', '11111', 'c', '1990-02-02', 'http://www.ejemplo.com'),
+  ('usuario2@dominio.com', '31d8342ec88202a2f129bee5eb47c571', 'Anómimo Anómino Anónimo', 'Calle', 12, 'Piso', 'Escalera', 'Población', '1', '12321', 's', '1991-12-12', '');
+  COMMIT;
+
+  /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+  /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+  /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

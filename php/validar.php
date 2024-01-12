@@ -36,6 +36,11 @@
 			$error = true;
 		}
 
+		if (isset($bloque) && $bloque != null && (strlen($bloque) < 1 || strlen($bloque) > 3)) {
+			echo "El <strong>bloque</strong> ha de tener entre 1 y 3 caracteres<br>";
+			$error = true;
+		}
+
 		if (!isset($numero) || !ctype_digit($numero) || $numero <= 0) {
 			echo "El <strong>número</strong> no es válido: <strong>$numero</strong><br>";
 			$error = true;
