@@ -118,6 +118,12 @@
 				echo "No ha marcado ningún <strong>tema</strong><br>";
 				$error = true;
 			}
+
+			// Validar que se han aceptado los términos y condiciones.
+			if (!isset($terminos)) {
+				echo "Debe aceptar los <strong>términos y condiciones</strong><br>";
+				$error = true;
+			}
 	
 			// Si hay errores, se muestran y se da la opción de volver al formulario para corregirlos.
 			if ($error) {
