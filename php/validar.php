@@ -46,6 +46,12 @@
 				echo "El <strong>bloque</strong> ha de tener entre 1 y 3 caracteres<br>";
 				$error = true;
 			}
+
+			// Validar la escalera, si se ha introducido, que tenga entre 1 y 3 caracteres.
+			if (isset($escalera) && $escalera != null && (strlen($escalera) < 1 || strlen($escalera) > 3)) {
+				echo "La <strong>escalera</strong> ha de tener entre 1 y 3 caracteres<br>";
+				$error = true;
+			}
 	
 			// Validar que el número no esté vacío, que sea un número entero positivo.
 			if (!isset($numero) || !ctype_digit($numero) || $numero <= 0) {
@@ -144,7 +150,7 @@
 				/* Por razones de seguridad, una vez validados los datos destruimos la variable $clave_repe */
 				unset($clave_repe);
 	
-				$sentencia_sql = "INSERT INTO `practica_insert_mysql`.`usuario` (`correo`, `clave`, `nombre`, `calle`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`) VALUES ('$correo', '$clave', '$nombre', '$calle', '$numero', '$piso', '$poblacion', '$provincia', '$codigo_postal', '$estado_civil', '$fecha_nacimiento', '$web');";
+				$sentencia_sql = "INSERT INTO `practica_insert_mysql`.`usuarios` (`correo`, `clave`, `nombre`, `calle`, `bloque`, `escalera`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`) VALUES ('$correo', '$clave', '$nombre', '$calle', '$bloque', '$escalera', '$numero', '$piso', '$poblacion', '$provincia', '$codigo_postal', '$estado_civil', '$fecha_nacimiento', '$web');";
 	
 				// Lanzamos la consulta insert
 				mysqli_query($conexion, $sentencia_sql) or die ("<strong>La inserción ha fallado, causa:</strong> " . mysqli_error($conexion));

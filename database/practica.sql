@@ -85,11 +85,6 @@ CREATE TABLE IF NOT EXISTS `practica_insert_mysql`.`usuario` (
   -- Volcado de datos para la tabla `usuario`
   --
 
-  INSERT INTO `practica_insert_mysql`.`usuario` (`correo`, `clave`, `nombre`, `calle`, `numero`, `piso`, `escalera`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`) VALUES
-  ('usuario@dominio.com', 'ff11aae3a302e11c2c2dab902ee611ab', 'Anómimo Anómino Anónimo', 'Calle', 11, 'Piso', 'Escalera', 'Población', '1', '11111', 'c', '1990-02-02', 'http://www.ejemplo.com'),
-  ('usuario2@dominio.com', '31d8342ec88202a2f129bee5eb47c571', 'Anómimo Anómino Anónimo', 'Calle', 12, 'Piso', 'Escalera', 'Población', '1', '12321', 's', '1991-12-12', '');
-  COMMIT;
-
   /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
   /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
   /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
