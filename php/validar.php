@@ -103,7 +103,7 @@
 	
 			// Validar que la fecha de nacimiento sea anterior a la fecha actual.
 			if ($fecha_nacimiento > date("Y-m-d")) {
-				echo "La <strong>fecha de nacimiento</strong> debe ser anterior a la fecha actual<br>";
+				echo "La <strong>fecha de nacimiento</strong> debe ser anterior o igual a la fecha actual<br>";
 				$error = true;
 			}
 	

@@ -1,8 +1,7 @@
 const selectorFechaNacimiento = document.getElementById('fecha_nacimiento');
-const fechaLimite = new Date(); // Assign a valid value to the fechaLimite variable
-fechaLimite.setDate(fechaLimite.getDate() - 1); // Set the previous day
+const fechaLimite = new Date() + 1;
+fechaLimite.setDate(fechaLimite.getDate());
 
-selectorFechaNacimiento.max = fechaLimite.toISOString().split("T")[0];
 // Obtener el formulario por su ID
 const formulario = document.getElementById('formulario');
 
@@ -161,7 +160,7 @@ formulario.addEventListener('submit', function (event) {
 
     // Validar que la fecha de nacimiento sea anterior a la fecha actual
     const fechaActual = new Date();
-    if (fechaNacimiento >= fechaActual) {
+    if (fechaNacimiento > fechaActual) {
         errorMessages += 'Por favor, introduce una fecha de nacimiento válida<br>';
         error = true;
     }
