@@ -70,3 +70,8 @@ input[type="reset"]:hover {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 }
+
+.error-message {
+	color: red;
+	font-size: 12px;
+}

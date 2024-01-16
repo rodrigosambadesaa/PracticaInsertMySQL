@@ -1,3 +1,8 @@
+const selectorFechaNacimiento = document.getElementById('fecha_nacimiento');
+const fechaLimite = new Date(); // Assign a valid value to the fechaLimite variable
+fechaLimite.setDate(fechaLimite.getDate() - 1); // Set the previous day
+
+selectorFechaNacimiento.max = fechaLimite.toISOString().split("T")[0];
 // Obtener el formulario por su ID
 const formulario = document.getElementById('formulario');
 
