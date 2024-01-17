@@ -161,7 +161,7 @@ formulario.addEventListener('submit', function (event) {
 
     // Validar que la fecha de nacimiento sea anterior a la fecha actual
     const fechaActual = new Date();
-    if (fechaNacimiento > fechaActual) {
+    if (fechaNacimiento >= fechaActual) {
         errorMessages += 'Por favor, introduce una <strong>fecha de nacimiento</strong> válida<br>';
         error = true;
     }
