@@ -59,7 +59,7 @@ formulario.addEventListener('submit', function (event) {
     }
 
     // Validar que se haya ingresado un nombre y apellidos
-    if (nombre.trim() === '') {
+    if (nombre === '') {
         errorMessages += 'Por favor, introduce tu <strong>nombre y apellidos</strong><br>';
         error = true;
     }
@@ -71,7 +71,7 @@ formulario.addEventListener('submit', function (event) {
     }
 
     // Validar que se haya ingresado una dirección de calle
-    if (direccionCalle.trim() === '') {
+    if (direccionCalle === '') {
        errorMessages += 'Por favor, introduce tu <strong>dirección de calle</strong><br>';
        error = true;
     }
@@ -83,19 +83,19 @@ formulario.addEventListener('submit', function (event) {
     }
 
     // Validar que se haya ingresado un bloque de dirección
-    if(direccionBloque.trim() !== '' && (direccionBloque.length < 1 || direccionBloque.length > 3)) {
+    if(direccionBloque !== '' && (direccionBloque.length < 1 || direccionBloque.length > 3)) {
         errorMessages += 'Por favor, introduce un <strong>bloque</strong> válido entre 3 y 20 caracteres<br>';
         error = true;
     }
 
     // Validar que se haya ingresado una escalera de dirección
-    if (direccionEscalera.trim() !== '' && (direccionEscalera.length < 1 || direccionEscalera.length > 3)) {
+    if (direccionEscalera !== '' && (direccionEscalera.length < 1 || direccionEscalera.length > 3)) {
         errorMessages += 'Por favor, introduce una <strong>escalera</strong> válida entre 3 y 20 caracteres<br>';
         error = true;
     }
 
     // Validar que se haya ingresado un número de dirección
-    if (direccionNumero.trim() === '') {
+    if (direccionNumero === '') {
        errorMessages += 'Por favor, introduce tu <strong>número</strong> de dirección<br>';
        error = true;
     }
@@ -107,13 +107,13 @@ formulario.addEventListener('submit', function (event) {
     }
 
     // Validar el piso
-    if (direccionPiso.trim() !== '' && (direccionPiso.length < 3 || direccionPiso.length > 20)) {
+    if (direccionPiso !== '' && (direccionPiso.length < 3 || direccionPiso.length > 20)) {
         errorMessages += 'Por favor, introduce un <strong>piso</strong> válido entre 3 y 20 caracteres<br>';
         error = true;
     }
 
     // Validar que se haya ingresado una población
-    if (poblacion.trim() === '') {
+    if (poblacion === '') {
        errorMessages += 'Por favor, introduce tu <strong>población</strong><br>';
        error = true;
     }
@@ -124,7 +124,7 @@ formulario.addEventListener('submit', function (event) {
     }
 
     // Validar que se haya ingresado una provincia
-    if (provincia.trim() === '') {
+    if (provincia === '') {
         errorMessages += 'Por favor, selecciona una <strong>provincia</strong><br>';
         error = true;
     }
@@ -142,7 +142,7 @@ formulario.addEventListener('submit', function (event) {
     }
 
     // Validar que se haya ingresado un código postal
-    if (codigoPostal.trim() === '') {
+    if (codigoPostal === '') {
         errorMessages += 'Por favor, introduce tu <strong>código postal</strong><br>';
         error = true;
     }
@@ -166,7 +166,7 @@ formulario.addEventListener('submit', function (event) {
         error = true;
     }
 
-    if (paginaWeb.trim() !== '') {
+    if (paginaWeb !== '') {
         try {
             const paginaWebUrl = new URL(paginaWeb);
         } catch (error) {
