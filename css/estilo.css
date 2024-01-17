@@ -78,7 +78,7 @@ input[type="reset"]:hover {
 #div-checkboxes {
 	display: flex;
 	flex-wrap: wrap;
-	justify-items: space-between;
+	justify-content: space-between;
 }
 
 #div-checkboxes .checkbox-item {
