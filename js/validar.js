@@ -1,5 +1,5 @@
 const selectorFechaNacimiento = document.getElementById('fecha_nacimiento');
-const fechaLimite = new Date() + 1;
+const fechaLimite = new Date();
 fechaLimite.setDate(fechaLimite.getDate());
 
 // Obtener el formulario por su ID
