@@ -18,6 +18,9 @@ formulario.addEventListener('submit', function (event) {
     // Limpiar los mensajes de error
     errorDiv.innerHTML = '';
 
+    // Edad mínima para registrarse
+    const edadMinima = 13;
+
     // Realizar las validaciones necesarias
     const nombre = document.getElementById('nombre').value;
     const email = document.getElementById('email').value;
@@ -173,6 +176,12 @@ formulario.addEventListener('submit', function (event) {
             errorMessages += 'Por favor, introduce una <strong>página web</strong> válida<br>';
             error = true;
         }
+    }
+
+    const edadUsuario = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
+    if (edadUsuario < edadMinima) {
+        errorMessages += 'Debes tener al menos ' + edadMinima + ' años para registrarte<br>';
+        error = true;
     }
 
     // Validar que al menos un tema esté seleccionado

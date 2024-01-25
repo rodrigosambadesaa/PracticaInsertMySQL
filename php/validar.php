@@ -11,6 +11,8 @@
 		// Validación de los datos recibidos del formulario.
 
 		if ($num_variables >= 1) {
+			$edad_minima = 13; // Edad mínima para registrarse.
+
 			// Validar que el correo electrónico no esté vacío, que tenga entre 5 y 320 caracteres y que sea un correo electrónico válido.
 			if (!isset($correo) || strlen($correo) < 5 || strlen($correo) > 320) {
 				echo "El <strong>correo</strong> electrónico ha de tener entre 5 y 320 caracteres<br>";
@@ -104,6 +106,14 @@
 			// Validar que la fecha de nacimiento sea anterior a la fecha actual.
 			if ($fecha_nacimiento >= date("Y-m-d")) {
 				echo "La <strong>fecha de nacimiento</strong> debe ser anterior o igual a la fecha actual<br>";
+				$error = true;
+			}
+
+			$edad_usuario = date("Y") - substr($fecha_nacimiento, 0, 4);
+
+			// Validar que el usuario tenga al menos 13 años.
+			if ($edad_usuario < $edad_minima) {
+				echo "El usuario debe tener al menos <strong>$edad_minima</strong> años para registrarse<br>";
 				$error = true;
 			}
 	
