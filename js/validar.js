@@ -15,6 +15,13 @@ formulario.addEventListener('submit', function (event) {
     // Detener el envío del formulario
     event.preventDefault();
 
+    // Obtener el número de variables del formulario
+    const numeroVariables = formulario.length;
+
+    if (numeroVariables === 0) {
+        throw new Error('El formulario no tiene variables');
+    }
+
     // Limpiar los mensajes de error
     errorDiv.innerHTML = '';
 
