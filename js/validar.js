@@ -120,7 +120,7 @@ formulario.addEventListener('submit', function (event) {
        errorMessages += 'Por favor, introduce tu <strong>población</strong><br>';
        error = true;
     }
-    
+
     // Validar que se haya ingresado una población válida
     if (poblacion.length < 3 || poblacion.length > 40) {
        errorMessages += 'Por favor, introduce una <strong>población</strong> válida entre 3 y 40 caracteres<br>';
@@ -181,7 +181,7 @@ formulario.addEventListener('submit', function (event) {
 
     const edadUsuario = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
     if (edadUsuario < edadMinima) {
-        errorMessages += 'Debes tener al menos ' + edadMinima + ' años para registrarte<br>';
+        errorMessages += `Debes tener al menos ${edadMinima} años para registrarte<br>`;
         error = true;
     }
 
