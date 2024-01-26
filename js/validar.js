@@ -120,6 +120,7 @@ formulario.addEventListener('submit', function (event) {
        errorMessages += 'Por favor, introduce tu <strong>población</strong><br>';
        error = true;
     }
+    
     // Validar que se haya ingresado una población válida
     if (poblacion.length < 3 || poblacion.length > 40) {
        errorMessages += 'Por favor, introduce una <strong>población</strong> válida entre 3 y 40 caracteres<br>';
