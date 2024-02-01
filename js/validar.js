@@ -206,7 +206,7 @@ formulario.addEventListener('submit', function (event) {
     }
 
     if (error) {
-        errorDiv.innerHTML = errorMessages;
+        errorDiv.appendChild(errorMessages);
         return;
     } else {
         formulario.submit();
