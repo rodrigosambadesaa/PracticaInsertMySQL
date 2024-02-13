@@ -2,7 +2,8 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<title> REGISTRO </title>
+	<title>REGISTRO</title>
+	<link rel="stylesheet" href="../css/estilo.css">
 </head>
 <body>
 	<?php
@@ -129,6 +130,12 @@
 				$error = true;
 			}
 
+			// Validar que se haya rellenado el textarea de sobre usted.
+			if (!isset($sobre_usted) || strlen($sobre_usted) === 0) {
+				echo "Debe rellenar el campo <strong>sobre usted</strong><br>";
+				$error = true;
+			}
+
 			// Validar que se han aceptado los términos y condiciones.
 			if (!isset($terminos)) {
 				echo "Debe aceptar los <strong>términos y condiciones</strong><br>";
@@ -139,6 +146,27 @@
 			if ($error) {
 				die("Debe corregir los errores. <a href='javascript:history.back();'>Volver</a>");
 			} else {
+				echo "<ol>Datos recibidos del formulario:<br>";
+				echo "<li>Correo: $correo</li>";
+				echo "<li>Nombre: $nombre</li>";
+				echo "<li>Calle: $calle</li>";
+				echo "<li>Bloque: $bloque</li>";
+				echo "<li>Escalera: $escalera</li>";
+				echo "<li>Número: $numero</li>";
+				echo "<li>Piso: $piso</li>";
+				echo "<li>Población: $poblacion</li>";
+				echo "<li>Provincia: $provincia</li>";
+				echo "<li>Código postal: $codigo_postal</li>";
+				echo "<li>Estado civil: $estado_civil</li>";
+				echo "<li>Fecha de nacimiento: $fecha_nacimiento</li>";
+				echo "<li>Dirección web: $web</li>";
+				echo "<li>Temas: <ul>";
+				foreach ($temas as $tema) {
+					echo "<li>$tema</li>";
+				}
+				echo "</ul></li>";
+				echo "</ol>";
+
 				// Si no hay errores, se procesan los datos y se insertan en la base de datos.
 				echo "<strong>Procesando registro...</strong><br>";
 				/* INSERCIÓN EN LA BASE DE DATOS */

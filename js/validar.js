@@ -186,10 +186,10 @@ formulario.addEventListener('submit', function (event) {
         }
     }
 
-    const edadUsuario = fechaActual.getFullYear() - fechaNacimiento.getFullYear();
-    if (edadUsuario < edadMinima) {
-        errorMessages += `Debes tener al menos ${edadMinima} años para registrarte<br>`;
-        error = true;
+   const edadUsuario = fechaActual.getFullYear() - new Date(fechaNacimiento).getFullYear();
+   if (edadUsuario < edadMinima) {
+       errorMessages += `Debes tener al menos ${edadMinima} años para registrarte<br>`;
+       error = true;
     }
 
     // Validar que al menos un tema esté seleccionado
@@ -200,13 +200,20 @@ formulario.addEventListener('submit', function (event) {
         error = true;
     }
 
+    // Validar que el textarea de sobre usted no esté vacío
+    const sobreUsted = document.getElementById('sobre_usted').value;
+    if (sobreUsted === '') {
+        errorMessages += 'Por favor, rellene el campo <strong>sobre usted</strong><br>';
+        error = true;
+    }
+
     if (!terminos) {
         errorMessages += 'Por favor, acepta los <strong>términos y condiciones</strong><br>';
         error = true;
     }
 
     if (error) {
-        errorDiv.appendChild(errorMessages);
+        errorDiv.innerHTML = errorMessages;
         return;
     } else {
         formulario.submit();
