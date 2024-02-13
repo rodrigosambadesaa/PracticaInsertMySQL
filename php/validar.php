@@ -194,7 +194,7 @@
 				/* Por razones de seguridad, una vez validados los datos destruimos la variable $clave_repe */
 				unset($clave_repe);
 	
-				$sentencia_sql = "INSERT INTO `practica_insert_mysql`.`usuarios` (`correo`, `clave`, `nombre`, `calle`, `bloque`, `escalera`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`) VALUES ('$correo', '$clave', '$nombre', '$calle', '$bloque', '$escalera', '$numero', '$piso', '$poblacion', '$provincia', '$codigo_postal', '$estado_civil', '$fecha_nacimiento', '$web');";
+				$sentencia_sql = "INSERT INTO `practica_insert_mysql`.`usuarios` (`correo`, `clave`, `nombre`, `calle`, `bloque`, `escalera`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`, `sobre_usuario`) VALUES ('$correo', '$clave', '$nombre', '$calle', '$bloque', '$escalera', '$numero', '$piso', '$poblacion', '$provincia', '$codigo_postal', '$estado_civil', '$fecha_nacimiento', '$web', '$sobre_usted');";
 	
 				// Lanzamos la consulta insert
 				mysqli_query($conexion, $sentencia_sql) or die ("<strong>La inserción ha fallado, causa:</strong> " . mysqli_error($conexion));
