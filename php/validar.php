@@ -225,7 +225,7 @@
 						// Si no se ha recibido ningún dato del formulario, mostrar un mensaje de error.
 						die("No se ha recibido ningún dato del formulario");
 					}
-				}
+		}
 	?>
 </body>
 </html>
