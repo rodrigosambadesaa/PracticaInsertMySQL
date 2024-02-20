@@ -51,7 +51,7 @@ formulario.addEventListener('submit', function (event) {
 
     // Validar el email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email) || email.length < 3 || email.length > 320) {
+    if (!emailRegex.test(email) || email.length < 5 || email.length > 320) {
         errorMessages += 'Por favor, introduce un <strong>email</strong> válido entre 3 y 320 caracteres<br>';
         error = true;
     }
