@@ -28,12 +28,12 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `temas`
 --
 
-CREATE DATABASE IF NOT EXISTS `practica_insert_mysql` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS `mi_empresa` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 
 
-DROP TABLE IF EXISTS `practica_insert_mysql`.`temas`;
-CREATE TABLE IF NOT EXISTS `practica_insert_mysql`.`temas` (
+DROP TABLE IF EXISTS `mi_empresa`.`temas`;
+CREATE TABLE IF NOT EXISTS `mi_empresa`.`temas` (
   `correo` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `tema` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`correo`,`tema`)
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `practica_insert_mysql`.`temas` (
 -- Volcado de datos para la tabla `temas`
 --
 
-INSERT INTO `practica_insert_mysql`.`temas` (`correo`, `tema`) VALUES
+INSERT INTO `mi_empresa`.`temas` (`correo`, `tema`) VALUES
 ('usuario@dominio.com', 'Cine'),
 ('usuario@dominio.com', 'Estética'),
 ('usuario@dominio.com', 'Música'),
@@ -60,8 +60,8 @@ INSERT INTO `practica_insert_mysql`.`temas` (`correo`, `tema`) VALUES
 -- Estructura de tabla para la tabla `usuario`
 --
 
-DROP TABLE IF EXISTS `practica_insert_mysql`.`usuario`;
-CREATE TABLE IF NOT EXISTS `practica_insert_mysql`.`usuario` (
+DROP TABLE IF EXISTS `mi_empresa`.`usuario`;
+CREATE TABLE IF NOT EXISTS `mi_empresa`.`usuario` (
   `correo` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `clave` char(32) COLLATE utf8_spanish_ci NOT NULL,
   `nombre` varchar(80) COLLATE utf8_spanish_ci NOT NULL,

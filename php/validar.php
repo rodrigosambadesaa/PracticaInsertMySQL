@@ -187,7 +187,7 @@
 						$servidor = "localhost";
 						$usuario = "root";
 						$contrasenha = "";
-						$base_de_datos = "practica_insert_mysql";
+						$base_de_datos = "mi_empresa";
 
 						// Establecer conexión con el servidor y la base de datos.
 						$conexion = mysqli_connect($servidor, $usuario, $contrasenha, $base_de_datos) or die("Error:" . mysqli_connect_error());
@@ -207,7 +207,7 @@
 						/* Por razones de seguridad, una vez que los datos han sido validados, destruimos la variable $clave_repe */
 						unset($_POST['clave_repe']);
 
-						$sentencia_sql = "INSERT INTO `practica_insert_mysql`.`usuarios` (`correo`, `clave`, `nombre`, `calle`, `bloque`, `escalera`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`, `sobre_usuario`) VALUES ('{$_POST['correo']}', '$clave', '{$_POST['nombre']}', '{$_POST['calle']}', '{$_POST['bloque']}', '{$_POST['escalera']}', '{$_POST['numero']}', '{$_POST['piso']}', '{$_POST['poblacion']}', '{$_POST['provincia']}', '{$_POST['codigo_postal']}', '{$_POST['estado_civil']}', '{$_POST['fecha_nacimiento']}', '{$_POST['web']}', '{$_POST['sobre_usted']}');";
+						$sentencia_sql = "INSERT INTO `mi_empresa`.`usuarios` (`correo`, `clave`, `nombre`, `calle`, `bloque`, `escalera`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`, `sobre_usuario`) VALUES ('{$_POST['correo']}', '$clave', '{$_POST['nombre']}', '{$_POST['calle']}', '{$_POST['bloque']}', '{$_POST['escalera']}', '{$_POST['numero']}', '{$_POST['piso']}', '{$_POST['poblacion']}', '{$_POST['provincia']}', '{$_POST['codigo_postal']}', '{$_POST['estado_civil']}', '{$_POST['fecha_nacimiento']}', '{$_POST['web']}', '{$_POST['sobre_usted']}');";
 
 						// Ejecutar la consulta de inserción
 						mysqli_query($conexion, $sentencia_sql) or die("<strong>Fallo en la inserción, causa:</strong> " . mysqli_error($conexion));
@@ -215,7 +215,7 @@
 						/* Tabla temas
 							Recorrer el array de temas para la inserción */
 						foreach ($_POST['temas'] as $tema) {
-							$sentencia_sql = "INSERT INTO `practica_insert_mysql`.`temas` (`correo`, `tema`) VALUES ('{$_POST['correo']}', '$tema');";
+							$sentencia_sql = "INSERT INTO `mi_empresa`.`temas` (`correo`, `tema`) VALUES ('{$_POST['correo']}', '$tema');";
 							// Ejecutar la consulta de inserción
 							mysqli_query($conexion, $sentencia_sql) or die("<strong>Fallo en la inserción, causa:</strong> " . mysqli_error($conexion));
 						}
