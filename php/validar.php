@@ -10,119 +10,118 @@
 <body>
 	<?php
 	$error = false;
-	$num_variables = extract($_POST); // Generación de las variables a partir de los datos recibidos del formulario.
-	// Validación de los datos recibidos del formulario.
-
+	$num_variables = count($_POST); // Count the number of variables received from the form.
+	// Validation of the data received from the form.
 	if ($num_variables >= 1) {
-		$edad_minima = 13; // Edad mínima para registrarse.
+		$edad_minima = 13; // Minimum age to register.
 
-		// Validar que el correo electrónico no esté vacío, que tenga entre 5 y 320 caracteres y que sea un correo electrónico válido.
-		if (!isset($correo) || strlen($correo) < 5 || strlen($correo) > 320) {
-			echo "El <strong>correo</strong> electrónico ha de tener entre 5 y 320 caracteres<br>";
+		// Validate that the email is not empty, has between 5 and 320 characters, and is a valid email.
+		if (!isset($_POST['correo']) || strlen($_POST['correo']) < 5 || strlen($_POST['correo']) > 320) {
+			echo "The <strong>email</strong> must have between 5 and 320 characters<br>";
 			$error = true;
-		} elseif (filter_var($correo, FILTER_VALIDATE_EMAIL) === false) {
-			echo "No es un <strong>correo</strong> electrónico válido: <strong>$correo</strong><br>";
-			$error = true;
-		}
-
-		// Validar que la clave no esté vacía, que tenga entre 4 y 20 caracteres y que las claves sean iguales.
-		if (!isset($clave) || strlen($clave) < 4 || strlen($clave) > 20) {
-			echo "La <strong>clave</strong> ha de tener entre 4 y 20 caracteres<br>";
-			$error = true;
-		} elseif (!isset($clave_repe) || $clave !== $clave_repe) {
-			echo "Las <strong>claves</strong> han de ser iguales<br>";
+		} elseif (filter_var($_POST['correo'], FILTER_VALIDATE_EMAIL) === false) {
+			echo "Invalid <strong>email</strong>: <strong>{$_POST['correo']}</strong><br>";
 			$error = true;
 		}
 
-		// Validar que el nombre no esté vacío, que tenga entre 3 y 80 caracteres.
-		if (!isset($nombre) || strlen($nombre) < 3 || strlen($nombre) > 80) {
-			echo "El <strong>nombre</strong> ha de tener entre 3 y 80 caracteres<br>";
+		// Validate that the password is not empty, has between 4 and 20 characters, and the passwords match.
+		if (!isset($_POST['clave']) || strlen($_POST['clave']) < 4 || strlen($_POST['clave']) > 20) {
+			echo "The <strong>password</strong> must have between 4 and 20 characters<br>";
+			$error = true;
+		} elseif (!isset($_POST['clave_repe']) || $_POST['clave'] !== $_POST['clave_repe']) {
+			echo "The <strong>passwords</strong> must match<br>";
 			$error = true;
 		}
 
-		// Validar que la calle no esté vacía, que tenga entre 5 y 40 caracteres.
-		if (!isset($calle) || strlen($calle) < 5 || strlen($calle) > 40) {
-			echo "La <strong>calle</strong> ha de tener entre 5 y 40 caracteres<br>";
+		// Validate that the name is not empty and has between 3 and 80 characters.
+		if (!isset($_POST['nombre']) || strlen($_POST['nombre']) < 3 || strlen($_POST['nombre']) > 80) {
+			echo "The <strong>name</strong> must have between 3 and 80 characters<br>";
 			$error = true;
 		}
 
-		// Validar el bloque, si se ha introducido, que tenga entre 1 y 3 caracteres.
-		if (isset($bloque) && (strlen($bloque) < 1 || strlen($bloque) > 3)) {
-			echo "El <strong>bloque</strong> ha de tener entre 1 y 3 caracteres<br>";
+		// Validate that the street is not empty and has between 5 and 40 characters.
+		if (!isset($_POST['calle']) || strlen($_POST['calle']) < 5 || strlen($_POST['calle']) > 40) {
+			echo "The <strong>street</strong> must have between 5 and 40 characters<br>";
 			$error = true;
 		}
 
-		// Validar la escalera, si se ha introducido, que tenga entre 1 y 3 caracteres.
-		if (isset($escalera) && (strlen($escalera) < 1 || strlen($escalera) > 3)) {
-			echo "La <strong>escalera</strong> ha de tener entre 1 y 3 caracteres<br>";
+		// Validate the block, if entered, has between 1 and 3 characters.
+		if (isset($_POST['bloque']) && !empty($_POST['bloque']) && (strlen($_POST['bloque']) < 1 || strlen($_POST['bloque']) > 3)) {
+			echo "The <strong>block</strong> must have between 1 and 3 characters<br>";
 			$error = true;
 		}
 
-		// Validar que el número no esté vacío, que sea un número entero positivo.
-		if (!isset($numero) || !ctype_digit($numero) || $numero <= 0) {
-			echo "El <strong>número</strong> no es válido: <strong>$numero</strong><br>";
+		// Validate the staircase, if entered, has between 1 and 3 characters.
+		if (isset($_POST['escalera']) && !empty($_POST['escalera']) && (strlen($_POST['escalera']) < 1 || strlen($_POST['escalera']) > 3)) {
+			echo "The <strong>staircase</strong> must have between 1 and 3 characters<br>";
 			$error = true;
 		}
 
-		// Validar el piso, si se ha introducido, que tenga entre 3 y 20 caracteres.
-		if (isset($piso) && (strlen($piso) < 3 || strlen($piso) > 20)) {
-			echo "El <strong>piso</strong> ha de tener entre 3 y 20 caracteres<br>";
+		// Validate that the number is not empty and is a positive integer.
+		if (!isset($_POST['numero']) || !ctype_digit($_POST['numero']) || $_POST['numero'] <= 0) {
+			echo "The <strong>number</strong> is not valid: <strong>{$_POST['numero']}</strong><br>";
 			$error = true;
 		}
 
-		// Validar que la población no esté vacía, que tenga entre 3 y 40 caracteres.
-		if (!isset($poblacion) || strlen($poblacion) < 3 || strlen($poblacion) > 40) {
-			echo "La <strong>población</strong> ha de tener entre 3 y 40 caracteres<br>";
+		// Validate the floor, if entered, has between 3 and 20 characters.
+		if (isset($_POST['piso']) && !empty($_POST['piso']) && (strlen($_POST['piso']) < 3 || strlen($_POST['piso']) > 20)) {
+			echo "The <strong>floor</strong> must have between 3 and 20 characters<br>";
 			$error = true;
 		}
 
-		// Validar que la provincia no esté vacía, que sea un número entero entre 1 y 4.
-		if (!isset($provincia) || $provincia < 1 || $provincia > 4) {
-			echo "Debe seleccionar la <strong>provincia</strong><br>";
+		// Validate that the city is not empty and has between 3 and 40 characters.
+		if (!isset($_POST['poblacion']) || strlen($_POST['poblacion']) < 3 || strlen($_POST['poblacion']) > 40) {
+			echo "The <strong>city</strong> must have between 3 and 40 characters<br>";
 			$error = true;
 		}
 
-		// Validar que la provincia sea un número entero.
-		if (!ctype_digit($provincia)) {
-			echo "La <strong>provincia</strong> debe ser un valor entero<br>";
+		// Validate that the province is not empty and is an integer between 1 and 4.
+		if (!isset($_POST['provincia']) || $_POST['provincia'] < 1 || $_POST['provincia'] > 4) {
+			echo "You must select a <strong>province</strong><br>";
 			$error = true;
 		}
 
-		// Validar que el código postal no esté vacío, que sea un número entero de 5 dígitos.
-		if (!isset($codigo_postal) || !ctype_digit($codigo_postal) || strlen($codigo_postal) != 5) {
-			echo "El <strong>código postal</strong> ha de tener 5 dígitos<br>";
+		// Validate that the province is an integer.
+		if (!ctype_digit($_POST['provincia'])) {
+			echo "The <strong>province</strong> must be an integer value<br>";
 			$error = true;
 		}
 
-		// Validar que el estado civil no esté vacío, que sea un número entero entre 1 y 4.
-		if (!isset($estado_civil) || strlen($estado_civil) != 1) {
-			echo "Debe seleccionar el <strong>estado civil</strong><br>";
+		// Validate that the postal code is not empty and is a 5-digit integer.
+		if (!isset($_POST['codigo_postal']) || !ctype_digit($_POST['codigo_postal']) || strlen($_POST['codigo_postal']) != 5) {
+			echo "The <strong>postal code</strong> must have 5 digits<br>";
 			$error = true;
 		}
 
-		// Validar que la fecha de nacimiento no esté vacía.
-		if (!isset($fecha_nacimiento)) {
-			echo "Debe seleccionar la <strong>fecha de nacimiento</strong><br>";
+		// Validate that the marital status is not empty and is an integer between 1 and 4.
+		if (!isset($_POST['estado_civil']) || strlen($_POST['estado_civil']) != 1) {
+			echo "You must select a <strong>marital status</strong><br>";
 			$error = true;
 		}
 
-		// Validar que la fecha de nacimiento sea anterior a la fecha actual.
-		if ($fecha_nacimiento >= date("Y-m-d")) {
-			echo "La <strong>fecha de nacimiento</strong> debe ser anterior o igual a la fecha actual<br>";
+		// Validate that the date of birth is not empty.
+		if (!isset($_POST['fecha_nacimiento'])) {
+			echo "You must select the <strong>date of birth</strong><br>";
 			$error = true;
 		}
 
-		$edad_usuario = date("Y") - substr($fecha_nacimiento, 0, 4);
+		// Validate that the date of birth is before the current date.
+		if ($_POST['fecha_nacimiento'] >= date("Y-m-d")) {
+			echo "The <strong>date of birth</strong> must be before or equal to the current date<br>";
+			$error = true;
+		}
 
-		// Validar que el usuario tenga al menos 13 años.
+		$edad_usuario = date("Y") - substr($_POST['fecha_nacimiento'], 0, 4);
+
+		// Validate that the user is at least 13 years old.
 		if ($edad_usuario < $edad_minima) {
-			echo "El usuario debe tener al menos <strong>$edad_minima</strong> años para registrarse<br>";
+			echo "The user must be at least <strong>$edad_minima</strong> years old to register<br>";
 			$error = true;
 		}
 
-		// Validar que la dirección web, si se ha introducido, sea una dirección web válida.
-		if (isset($web) && filter_var($web, FILTER_VALIDATE_URL) === false) {
-			echo "La <strong>dirección web</strong> no es válida: <strong>$web</strong><br>";
+		// Validate that the website, if entered, is a valid URL.
+		if (isset($_POST['web']) && !empty($_POST['web']) && filter_var($_POST['web'], FILTER_VALIDATE_URL) === false) {
+			echo "The <strong>website</strong> is not valid: <strong>{$_POST['web']}</strong><br>";
 			$error = true;
 		}
 
@@ -137,95 +136,90 @@
 				echo $key . " => " . $val . "<br>";
 			}
 			if (count($a_counts) === 0) {
-				echo "Debe seleccionar al menos un tema<br>";
+				echo "You must select at least one topic<br>";
 				$error = true;
 			}
 		}
 
-		// Validar que se haya rellenado el textarea de sobre usted.
-		if (!isset($sobre_usted) || strlen($sobre_usted) === 0) {
-			echo "Debe rellenar el campo <strong>sobre usted</strong><br>";
+		// Validate that the "about you" textarea is filled.
+		if (!isset($_POST['sobre_usted']) || strlen($_POST['sobre_usted']) === 0) {
+			echo "You must fill in the <strong>about you</strong> field<br>";
 			$error = true;
 		}
 
-		// Validar que se han aceptado los términos y condiciones.
-		if (!isset($terminos)) {
-			echo "Debe aceptar los <strong>términos y condiciones</strong><br>";
+		// Validate that the terms and conditions have been accepted.
+		if (!isset($_POST['terminos'])) {
+			echo "You must accept the <strong>terms and conditions</strong><br>";
 			$error = true;
 		}
 
-		// Si hay errores, se muestran y se da la opción de volver al formulario para corregirlos.
+		// If there are errors, display them and give the option to go back to the form to correct them.
 		if ($error) {
-			die("Debe corregir los errores. <a href='javascript:history.back();'>Volver</a>");
+			die("You must correct the errors. <a href='javascript:history.back();'>Go back</a>");
 		} else {
-			echo "<ol>Datos recibidos del formulario:<br>";
-			echo "<li>Correo: $correo</li>";
-			echo "<li>Nombre: $nombre</li>";
-			echo "<li>Calle: $calle</li>";
-			echo "<li>Bloque: $bloque</li>";
-			echo "<li>Escalera: $escalera</li>";
-			echo "<li>Número: $numero</li>";
-			echo "<li>Piso: $piso</li>";
-			echo "<li>Población: $poblacion</li>";
-			echo "<li>Provincia: $provincia</li>";
-			echo "<li>Código postal: $codigo_postal</li>";
-			echo "<li>Estado civil: $estado_civil</li>";
-			echo "<li>Fecha de nacimiento: $fecha_nacimiento</li>";
-			echo "<li>Dirección web: $web</li>";
-			echo "<li>Temas: <ul>";
-			foreach ($temas as $tema) {
+			echo "<ol>Data received from the form:<br>";
+			echo "<li>Email: {$_POST['correo']}</li>";
+			echo "<li>Name: {$_POST['nombre']}</li>";
+			echo "<li>Street: {$_POST['calle']}</li>";
+			echo "<li>Block: {$_POST['bloque']}</li>";
+			echo "<li>Staircase: {$_POST['escalera']}</li>";
+			echo "<li>Number: {$_POST['numero']}</li>";
+			echo "<li>Floor: {$_POST['piso']}</li>";
+			echo "<li>City: {$_POST['poblacion']}</li>";
+			echo "<li>Province: {$_POST['provincia']}</li>";
+			echo "<li>Postal Code: {$_POST['codigo_postal']}</li>";
+			echo "<li>Marital Status: {$_POST['estado_civil']}</li>";
+			echo "<li>Date of Birth: {$_POST['fecha_nacimiento']}</li>";
+			echo "<li>Website: {$_POST['web']}</li>";
+			echo "<li>Topics: <ul>";
+			foreach ($_POST['temas'] as $tema) {
 				echo "<li>$tema</li>";
 			}
 			echo "</ul></li>";
 			echo "</ol>";
 
-			// Si no hay errores, se procesan los datos y se insertan en la base de datos.
-			echo "<strong>Procesando registro...</strong><br>";
-			/* INSERCIÓN EN LA BASE DE DATOS */
+			// If there are no errors, process the data and insert it into the database.
+			echo "<strong>Processing registration...</strong><br>";
+			/* DATABASE INSERTION */
 
 			$servidor = "localhost";
 			$usuario = "root";
 			$contrasenha = "";
 			$base_de_datos = "practica_insert_mysql";
 
-			// Establecemos la conexión con el servidor y con la base de datos.
+			// Establish connection with the server and the database.
 			$conexion = mysqli_connect($servidor, $usuario, $contrasenha, $base_de_datos) or die("Error:" . mysqli_connect_error());
 
-			//Especificación del sistema de caracteres a utilizar en la base de datos, para evitar problemas con ciertos caracteres
+			// Set the character set to use in the database to avoid problems with certain characters.
 			mysqli_query($conexion, "SET NAMES UTF8");
 
-			//Preparación de las consultas
-			//Tabla usuarios
-			//Encriptación de la contraseña.
-			/* IMPORTANTE: El string devuelto por la función hash siempre tiene una longitud de 32 caracteres.
-				Ajustamos, por tanto, la longitud de la contraseña en la base de datos a 32 caracteres */
-			/* //Esto es mejor que encriptarla directamente en la consulta, porque así nunca conservamos en la variable el valor original (texto plano) de la contraseña.
-				Siempre se guardará encriptada. Se ha escogido el algoritmo md5: https://es.wikipedia.org/wiki/MD5 */
-			$clave = hash("md5", $clave);
+			// Prepare the queries
+			// Table usuarios
+			// Encrypt the password.
+			/* IMPORTANT: The string returned by the hash function always has a length of 32 characters.
+				Therefore, we adjust the length of the password in the database to 32 characters */
+			/* //This is better than encrypting it directly in the query because we never keep the original (plain text) value of the password in the variable.
+				It will always be stored encrypted. We have chosen the md5 algorithm: https://en.wikipedia.org/wiki/MD5 */
+			$clave = hash("md5", $_POST['clave']);
 
-			/* Por razones de seguridad, una vez validados los datos destruimos la variable $clave_repe */
-			unset($clave_repe);
+			/* For security reasons, once the data has been validated, we destroy the $clave_repe variable */
+			unset($_POST['clave_repe']);
 
-			$sentencia_sql = "INSERT INTO `practica_insert_mysql`.`usuarios` (`correo`, `clave`, `nombre`, `calle`, `bloque`, `escalera`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`, `sobre_usuario`) VALUES ('$correo', '$clave', '$nombre', '$calle', '$bloque', '$escalera', '$numero', '$piso', '$poblacion', '$provincia', '$codigo_postal', '$estado_civil', '$fecha_nacimiento', '$web', '$sobre_usted');";
+			$sentencia_sql = "INSERT INTO `practica_insert_mysql`.`usuarios` (`correo`, `clave`, `nombre`, `calle`, `bloque`, `escalera`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`, `sobre_usuario`) VALUES ('{$_POST['correo']}', '$clave', '{$_POST['nombre']}', '{$_POST['calle']}', '{$_POST['bloque']}', '{$_POST['escalera']}', '{$_POST['numero']}', '{$_POST['piso']}', '{$_POST['poblacion']}', '{$_POST['provincia']}', '{$_POST['codigo_postal']}', '{$_POST['estado_civil']}', '{$_POST['fecha_nacimiento']}', '{$_POST['web']}', '{$_POST['sobre_usted']}');";
 
-			// Lanzamos la consulta insert
-			mysqli_query($conexion, $sentencia_sql) or die("<strong>La inserción ha fallado, causa:</strong> " . mysqli_error($conexion));
+			// Execute the insert query
+			mysqli_query($conexion, $sentencia_sql) or die("<strong>Insertion failed, cause:</strong> " . mysqli_error($conexion));
 
-			/* Tabla temas	
-				Recorrido del array de temas para la inserción */
-			foreach ($temas as $tema) {
-				$sentencia_sql = "INSERT INTO `practica_insert_mysql`.`temas` (`correo`, `tema`) VALUES ('$correo', '$tema');";
-				// Lanzamos la consulta insert
-				mysqli_query($conexion, $sentencia_sql) or die("<strong>La inserción ha fallado, causa:</strong> " . mysqli_error($conexion));
+			/* Table temas
+				Loop through the topics array for insertion */
+			foreach ($_POST['temas'] as $tema) {
+				$sentencia_sql = "INSERT INTO `practica_insert_mysql`.`temas` (`correo`, `tema`) VALUES ('{$_POST['correo']}', '$tema');";
+				// Execute the insert query
+				mysqli_query($conexion, $sentencia_sql) or die("<strong>Insertion failed, cause:</strong> " . mysqli_error($conexion));
 			}
-			echo "Los datos se han insertado correctamente";
+			echo "Data has been inserted successfully";
 		}
 	} else {
-		// Si no se han recibido datos del formulario, se muestra un mensaje de error.
-		die("No se han recibido datos del formulario");
+		// If no data has been received from the form, display an error message.
+		die("No data has been received from the form");
 	}
-
-	?>
-</body>
-
-</html>
