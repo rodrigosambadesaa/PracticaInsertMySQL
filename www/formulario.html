@@ -14,50 +14,50 @@
 			<legend>Datos de identificación</legend>
 			<div>
 				<label for="email">e-mail <span class="red">*</span></label>
-				<input id="email" name="correo" size="25" maxlength="320" required>
+				<input id="email" name="correo" size="25" maxlength="320" required tabindex="1">
 			</div>
 			<div>
 				<label for="password">Contraseña <span class="red">*</span> <br>(entre 4 y 20 caracteres)</label>
-				<input type="password" id="password" name="clave" size="25" maxlength="20" required>
+				<input type="password" id="password" name="clave" size="25" maxlength="20" required tabindex="2">
 			</div>
 			<div>
 				<label for="confirmPassword">Repita contraseña <span class="red">*</span></label>
-				<input type="password" id="confirmPassword" name="clave_repe" size="25" maxlength="20" required>
+				<input type="password" id="confirmPassword" name="clave_repe" size="25" maxlength="20" required tabindex="3">
 			</div>
 			<div>
 				<label for="nombre">Nombre y apellidos <span class="red">*</span></label>
-				<input id="nombre" name="nombre" size="25" maxlength="80" required>
+				<input id="nombre" name="nombre" size="25" maxlength="80" required tabindex="4">
 			</div>
 		</fieldset>
 		<fieldset>
 			<legend>Dirección</legend>
 			<div>
 				<label for="direccionCalle">Calle <span class="red">*</span></label>
-				<input name="calle" id="direccionCalle" size="46" maxlength="40" required>
+				<input name="calle" id="direccionCalle" size="46" maxlength="40" required tabindex="5">
 			</div>
 			<div>
 				<label for="direccionBloque">Bloque</label>
-				<input name="bloque" id="direccionBloque" size="6" maxlength="3">
+				<input name="bloque" id="direccionBloque" size="6" maxlength="3" tabindex="6">
 			</div>
 			<div>
 				<label for="direccionEscalera">Escalera</label>
-				<input name="escalera" id="direccionEscalera" size="6" maxlength="3">
+				<input name="escalera" id="direccionEscalera" size="6" maxlength="3" tabindex="7">
 			</div>
 			<div>
 				<label for="direccionNumero">Nº <span class="red">*</span></label>
-				<input name="numero" id="direccionNumero" size="6" maxlength="3" required>
+				<input name="numero" id="direccionNumero" size="6" maxlength="3" required tabindex="8">
 			</div>
 			<div>
 				<label for="direccionPiso">Piso</label>
-				<input name="piso" id="direccionPiso" size="12" maxlength="20">
+				<input name="piso" id="direccionPiso" size="12" maxlength="20" tabindex="9">
 			</div>
 			<div>
 				<label for="poblacion">Población <span class="red">*</span></label>
-				<input name="poblacion" id="poblacion" size="25" maxlength="40" required>
+				<input name="poblacion" id="poblacion" size="25" maxlength="40" required tabindex="10">
 			</div>
 			<div>
 				<label for="provincia">Provincia <span class="red">*</span></label>
-				<select name="provincia" id="provincia" required>
+				<select name="provincia" id="provincia" required tabindex="11">
 					<option label="vacio"></option>
 					<option value="1">A Coruña</option>
 					<option value="2">Lugo</option>
@@ -67,14 +67,14 @@
 			</div>
 			<div>
 				<label for="codigoPostal">Código Postal <span class="red">*</span></label>
-				<input name="codigo_postal" id="codigoPostal" size="9" maxlength="5" required>
+				<input name="codigo_postal" id="codigoPostal" size="9" maxlength="5" required tabindex="12">
 			</div>
 		</fieldset>
 		<fieldset>
 			<legend>Datos personales</legend>
 			<div>
 				<label for="estadoCivil">Estado civil <span class="red">*</span></label>
-				<select name="estado_civil" id="estadoCivil" required>
+				<select name="estado_civil" id="estadoCivil" required tabindex="13">
 					<option id="vacio" label="vacio"></option>
 					<option value="c">Casada/o</option>
 					<option value="s">Soltera/o</option>
@@ -83,11 +83,11 @@
 			</div>
 			<div>
 				<label for="fecha_nacimiento">Fecha de nacimiento <span class="red">*</span></label>
-				<input required type="date" id="fecha_nacimiento" name="fecha_nacimiento">
+				<input required type="date" id="fecha_nacimiento" name="fecha_nacimiento" tabindex="14">
 			</div>
 			<div>
 				<label for="paginaWeb">Página Web</label>
-				<input name="web" type="url" id="paginaWeb" size="46" maxlength="100">
+				<input name="web" type="url" id="paginaWeb" size="46" maxlength="100" tabindex="15">
 			</div>
 		</fieldset>
 		<fieldset>
@@ -95,39 +95,39 @@
 			<div>
 				<div id="div-checkboxes">
 					<div class="checkbox-item">
-						<input id="musica" type="checkbox" name="temas[]">
+						<input id="musica" type="checkbox" name="temas[]" tabindex="16">
 						<label for="musica">Música</label>
 					</div>
 					<div class="checkbox-item">
-						<input id="deportes" type="checkbox" name="temas[]">
+						<input id="deportes" type="checkbox" name="temas[]" tabindex="17">
 						<label for="deportes">Deportes</label>
 					</div>
 					<div class="checkbox-item">
-						<input id="lectura" type="checkbox" name="temas[]">
+						<input id="lectura" type="checkbox" name="temas[]" tabindex="18">
 						<label for="lectura">Lectura</label>
 					</div>
 					<div class="checkbox-item">
-						<input id="cine" type="checkbox" name="temas[]">
+						<input id="cine" type="checkbox" name="temas[]" tabindex="19">
 						<label for="cine">Cine</label>
 					</div>
 					<div class="checkbox-item">
-						<input id="teatro" type="checkbox" name="temas[]">
+						<input id="teatro" type="checkbox" name="temas[]" tabindex="20">
 						<label for="teatro">Teatro</label>
 					</div>
 					<div class="checkbox-item">
-						<input id="coches" type="checkbox" name="temas[]">
+						<input id="coches" type="checkbox" name="temas[]" tabindex="21">
 						<label for="coches">Coches</label>
 					</div>
 					<div class="checkbox-item">
-						<input id="estetica" type="checkbox" name="temas[]">
+						<input id="estetica" type="checkbox" name="temas[]" tabindex="22">
 						<label for="estetica">Estética</label>
 					</div>
 					<div class="checkbox-item">
-						<input id="moviles" type="checkbox" name="temas[]">
+						<input id="moviles" type="checkbox" name="temas[]" tabindex="23">
 						<label for="moviles">Móviles</label>
 					</div>
 					<div class="checkbox-item">
-						<input id="viajes" type="checkbox" name="temas[]">
+						<input id="viajes" type="checkbox" name="temas[]" tabindex="24">
 						<label for="viajes">Viajes</label>
 					</div>
 				</div>
@@ -137,20 +137,20 @@
 			<legend>Sobre usted</legend>
 			<div>
 				<label for="sobre_usted">Sobre usted <span class="red">*</span></label>
-				<textarea  required id="sobre_usted" name="sobre_usted" rows="4" cols="55"></textarea>
+				<textarea  required id="sobre_usted" name="sobre_usted" rows="4" cols="55" tabindex="25"></textarea>
 			</div>
 		</fieldset>
 		<fieldset>
 			<legend>Términos y condiciones</legend>
 			<div id="divTerminosCondiciones">
-				<input type="checkbox" id="terminos" name="terminos" required>
+				<input type="checkbox" id="terminos" name="terminos" required tabindex="26">
 				<label for="terminos">Acepto los términos y condiciones <span class="red">*</span></label>
 			</div>
 		</fieldset>
 		<div>
 			<div id="div-botones">
-				<input type="submit" value="Enviar">
-				<input type="reset" value="Borrar datos">
+				<input type="submit" value="Enviar" tabindex="27">
+				<input type="reset" value="Borrar datos" tabindex="28">
 			</div>
 		</div>
 		<div>
