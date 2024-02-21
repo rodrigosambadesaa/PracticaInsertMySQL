@@ -126,8 +126,8 @@
 				$error = true;
 			}
 
+			$a_counts = array();
 			if (isset($_POST['temas'])) {
-				$a_counts = array();
 				foreach ($_POST['temas'] as $key => $val) {
 					if (!isset($a_counts[$val])) {
 						$a_counts[$val] = 1;
@@ -136,10 +136,11 @@
 					}
 					echo $key . " => " . $val . "<br>";
 				}
-				if (count($a_counts) === 0) {
-					echo "Debes seleccionar al menos un <strong>tema</strong><br>";
-					$error = true;
-				}
+			}
+
+			if (count($a_counts) === 0) {
+				echo "Debes seleccionar al menos un <strong>tema</strong><br>";
+				$error = true;
 			}
 
 			// Validar que el campo "sobre ti" no esté vacío.
