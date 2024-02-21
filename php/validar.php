@@ -158,26 +158,26 @@
 			if ($error) {
 				die("Debes corregir los errores. <a href='javascript:history.back();'>Volver</a>");
 			} else {
-				echo "<ol>Datos recibidos del formulario:<br>";
-				echo "<li>Email: {$_POST['correo']}</li>";
-				echo "<li>Nombre: {$_POST['nombre']}</li>";
-				echo "<li>Calle: {$_POST['calle']}</li>";
-				echo "<li>Bloque: {$_POST['bloque']}</li>";
-				echo "<li>Escalera: {$_POST['escalera']}</li>";
-				echo "<li>Número: {$_POST['numero']}</li>";
-				echo "<li>Piso: {$_POST['piso']}</li>";
-				echo "<li>Ciudad: {$_POST['poblacion']}</li>";
-				echo "<li>Provincia: {$_POST['provincia']}</li>";
-				echo "<li>Código Postal: {$_POST['codigo_postal']}</li>";
-				echo "<li>Estado Civil: {$_POST['estado_civil']}</li>";
-				echo "<li>Fecha de Nacimiento: {$_POST['fecha_nacimiento']}</li>";
-				echo "<li>Sitio Web: {$_POST['web']}</li>";
-				echo "<li>Temas: <ul>";
-				foreach ($_POST['temas'] as $tema) {
-					echo "<li>$tema</li>";
-				}
-				echo "</ul></li>";
-				echo "</ol>";
+				// echo "<ol>Datos recibidos del formulario:<br>";
+				// echo "<li>Email: {$_POST['correo']}</li>";
+				// echo "<li>Nombre: {$_POST['nombre']}</li>";
+				// echo "<li>Calle: {$_POST['calle']}</li>";
+				// echo "<li>Bloque: {$_POST['bloque']}</li>";
+				// echo "<li>Escalera: {$_POST['escalera']}</li>";
+				// echo "<li>Número: {$_POST['numero']}</li>";
+				// echo "<li>Piso: {$_POST['piso']}</li>";
+				// echo "<li>Ciudad: {$_POST['poblacion']}</li>";
+				// echo "<li>Provincia: {$_POST['provincia']}</li>";
+				// echo "<li>Código Postal: {$_POST['codigo_postal']}</li>";
+				// echo "<li>Estado Civil: {$_POST['estado_civil']}</li>";
+				// echo "<li>Fecha de Nacimiento: {$_POST['fecha_nacimiento']}</li>";
+				// echo "<li>Sitio Web: {$_POST['web']}</li>";
+				// echo "<li>Temas: <ul>";
+				// foreach ($_POST['temas'] as $tema) {
+				// 	echo "<li>$tema</li>";
+				// }
+				// echo "</ul></li>";
+				// echo "</ol>";
 
 				// Si no hay errores, procesar los datos e insertarlos en la base de datos.
 				echo "<strong>Procesando registro...</strong><br>";
