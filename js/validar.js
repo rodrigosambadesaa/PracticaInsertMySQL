@@ -203,7 +203,7 @@ formulario.addEventListener('submit', function (event) {
     // Validar que el textarea de sobre usted no esté vacío
     const sobreUsted = document.getElementById('sobre_usted').value;
     if (sobreUsted === '') {
-        errorMessages += 'Por favor, rellene el campo <strong>sobre usted</strong><br>';
+        errorMessages += 'Por favor, rellena el campo <strong>sobre usted</strong><br>';
         error = true;
     }
 
