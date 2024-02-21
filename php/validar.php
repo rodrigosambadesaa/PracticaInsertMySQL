@@ -134,7 +134,7 @@
 					} else {
 						$a_counts[$val]++;
 					}
-					echo $key . " => " . $val . "<br>";
+					// echo $key . " => " . $val . "<br>";
 				}
 			}
 
