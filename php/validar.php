@@ -137,7 +137,7 @@
 					echo $key . " => " . $val . "<br>";
 				}
 				if (count($a_counts) === 0) {
-					echo "Debes seleccionar al menos un tema<br>";
+					echo "Debes seleccionar al menos un <strong>tema</strong><br>";
 					$error = true;
 				}
 			}
