@@ -11,12 +11,12 @@
 	<?php
 	$error = false;
 	if ($_SERVER["REQUEST_METHOD"] === "POST") {
-		$num_variables = count($_POST); // Count the number of variables received from the form.
-		// Validation of the data received from the form.
+		$num_variables = count($_POST); // Cuenta el número de variables recibidas por POST.
+		// Validación de los datos recibidos por POST.
 		if ($num_variables >= 1) {
-			$edad_minima = 13; // Minimum age to register.
+			$edad_minima = 13; // Edad mínima para registrarse.
 
-			// Validate that the email is not empty, has between 5 and 320 characters, and is a valid email.
+			// Validar que el email no esté vacío, tenga entre 5 y 320 caracteres y sea un email válido.
 			if (!isset($_POST['correo']) || strlen($_POST['correo']) < 5 || strlen($_POST['correo']) > 320) {
 				echo "El <strong>email</strong> debe tener entre 5 y 320 caracteres<br>";
 				$error = true;
