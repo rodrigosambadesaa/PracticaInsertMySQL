@@ -18,7 +18,7 @@
 
 			// Validar que el email no esté vacío, tenga entre 5 y 320 caracteres y sea un email válido.
 			if (!isset($_POST['correo']) || strlen($_POST['correo']) < 5 || strlen($_POST['correo']) > 320) {
-				echo "El <strong>email</strong> debe tener entre 5 y 320 caracteres<br>";
+				echo "El <strong>email</strong> debe tener entre 5 y 320 caracteres: {$_POST['correo']}<br>";
 				$error = true;
 			} elseif (filter_var($_POST['correo'], FILTER_VALIDATE_EMAIL) === false) {
 				echo "Correo <strong>inválido</strong>: <strong>{$_POST['correo']}</strong><br>";
@@ -27,88 +27,89 @@
 
 			// Validar que la contraseña no esté vacía, tenga entre 4 y 20 caracteres y las contraseñas coincidan.
 			if (!isset($_POST['clave']) || strlen($_POST['clave']) < 4 || strlen($_POST['clave']) > 20) {
-				echo "La <strong>contraseña</strong> debe tener entre 4 y 20 caracteres<br>";
+				echo "La <strong>contraseña</strong> debe tener entre 4 y 20 caracteres: {$_POST['correo']}<br>";
 				$error = true;
 			} elseif (!isset($_POST['clave_repe']) || $_POST['clave'] !== $_POST['clave_repe']) {
-				echo "Las <strong>contraseñas</strong> deben coincidir<br>";
+				echo "Las <strong>contraseñas</strong> deben coincidir:<br>";
+				echo "<ol><li>Contraseña: {$_POST['clave']}</li><li>Repetir Contraseña: {$_POST['clave_repe']}</li></ol>";
 				$error = true;
 			}
 
 			// Validar que el nombre no esté vacío y tenga entre 3 y 80 caracteres.
 			if (!isset($_POST['nombre']) || strlen($_POST['nombre']) < 3 || strlen($_POST['nombre']) > 80) {
-				echo "El <strong>nombre</strong> debe tener entre 3 y 80 caracteres<br>";
+				echo "El <strong>nombre</strong> debe tener entre 3 y 80 caracteres: {$_POST['nombre']}<br>";
 				$error = true;
 			}
 
 			// Validar que la calle no esté vacía y tenga entre 5 y 40 caracteres.
 			if (!isset($_POST['calle']) || strlen($_POST['calle']) < 5 || strlen($_POST['calle']) > 40) {
-				echo "La <strong>calle</strong> debe tener entre 5 y 40 caracteres<br>";
+				echo "La <strong>calle</strong> debe tener entre 5 y 40 caracteres: {$_POST['calle']}<br>";
 				$error = true;
 			}
 
 			// Validar que el bloque, si se ha ingresado, tenga entre 1 y 3 caracteres.
 			if (isset($_POST['bloque']) && !empty($_POST['bloque']) && (strlen($_POST['bloque']) < 1 || strlen($_POST['bloque']) > 3)) {
-				echo "El <strong>bloque</strong> debe tener entre 1 y 3 caracteres<br>";
+				echo "El <strong>bloque</strong> debe tener entre 1 y 3 caracteres: {$_POST['bloque']}<br>";
 				$error = true;
 			}
 
 			// Validar que la escalera, si se ha ingresado, tenga entre 1 y 3 caracteres.
 			if (isset($_POST['escalera']) && !empty($_POST['escalera']) && (strlen($_POST['escalera']) < 1 || strlen($_POST['escalera']) > 3)) {
-				echo "La <strong>escalera</strong> debe tener entre 1 y 3 caracteres<br>";
+				echo "La <strong>escalera</strong> debe tener entre 1 y 3 caracteres: {$_POST['escalera']}<br>";
 				$error = true;
 			}
 
 			// Validar que el número no esté vacío y sea un entero positivo.
 			if (!isset($_POST['numero']) || !ctype_digit($_POST['numero']) || $_POST['numero'] <= 0) {
-				echo "El <strong>número</strong> no es válido: <strong>{$_POST['numero']}</strong><br>";
+				echo "El <strong>número</strong> no es válido: {$_POST['numero']}<br>";
 				$error = true;
 			}
 
 			// Validar que el piso, si se ha ingresado, tenga entre 3 y 20 caracteres.
 			if (isset($_POST['piso']) && !empty($_POST['piso']) && (strlen($_POST['piso']) < 3 || strlen($_POST['piso']) > 20)) {
-				echo "El <strong>piso</strong> debe tener entre 3 y 20 caracteres<br>";
+				echo "El <strong>piso</strong> debe tener entre 3 y 20 caracteres: {$_POST['piso']}<br>";
 				$error = true;
 			}
 
 			// Validar que la ciudad no esté vacía y tenga entre 3 y 40 caracteres.
 			if (!isset($_POST['poblacion']) || strlen($_POST['poblacion']) < 3 || strlen($_POST['poblacion']) > 40) {
-				echo "La <strong>ciudad</strong> debe tener entre 3 y 40 caracteres<br>";
+				echo "La <strong>ciudad</strong> debe tener entre 3 y 40 caracteres: {$_POST['poblacion']}<br>";
 				$error = true;
 			}
 
 			// Validar que la provincia no esté vacía y sea un entero entre 1 y 4.
 			if (!isset($_POST['provincia']) || $_POST['provincia'] < 1 || $_POST['provincia'] > 4) {
-				echo "Debes seleccionar una <strong>provincia</strong><br>";
+				echo "Debes seleccionar una <strong>provincia</strong>: {$_POST['provincia']}<br>";
 				$error = true;
 			}
 
 			// Validar que la provincia sea un entero.
 			if (!ctype_digit($_POST['provincia'])) {
-				echo "La <strong>provincia</strong> debe ser un valor entero<br>";
+				echo "La <strong>provincia</strong> debe ser un valor entero: {$_POST['provincia']}<br>";
 				$error = true;
 			}
 
 			// Validar que el código postal no esté vacío y sea un entero de 5 dígitos.
-			if (!isset($_POST['codigo_postal']) || !ctype_digit($_POST['codigo_postal']) || strlen($_POST['codigo_postal']) != 5) {
-				echo "El <strong>código postal</strong> debe tener 5 dígitos<br>";
+			if (!isset($_POST['codigo_postal']) || !ctype_digit($_POST['codigo_postal']) || strlen($_POST['codigo_postal']) !== 5) {
+				echo "El <strong>código postal</strong> debe tener 5 dígitos: {$_POST['codigo_postal']}<br>";
 				$error = true;
 			}
 
 			// Validar que el estado civil no esté vacío y sea un entero de 1 dígito.
-			if (!isset($_POST['estado_civil']) || strlen($_POST['estado_civil']) != 1) {
-				echo "Debes seleccionar un <strong>estado civil</strong><br>";
+			if (!isset($_POST['estado_civil']) || strlen($_POST['estado_civil']) !== 1) {
+				echo "Debes seleccionar un <strong>estado civil</strong>: {$_POST['estado_civil']}<br>";
 				$error = true;
 			}
 
 			// Validar que la fecha de nacimiento no esté vacía.
 			if (!isset($_POST['fecha_nacimiento'])) {
-				echo "Debes seleccionar la <strong>fecha de nacimiento</strong><br>";
+				echo "Debes seleccionar la <strong>fecha de nacimiento</strong>: {$_POST['fecha_nacimiento']}<br>";
 				$error = true;
 			}
 
 			// Validar que la fecha de nacimiento sea anterior a la fecha actual.
 			if ($_POST['fecha_nacimiento'] >= date("Y-m-d")) {
-				echo "La <strong>fecha de nacimiento</strong> debe ser anterior o igual a la fecha actual<br>";
+				echo "La <strong>fecha de nacimiento</strong> debe ser anterior o igual a la fecha actual: {$_POST['fecha_nacimiento']}<br>";
 				$error = true;
 			}
 
@@ -116,7 +117,7 @@
 
 			// Validar que el usuario tenga al menos 13 años.
 			if ($edad_usuario < $edad_minima) {
-				echo "El usuario debe tener al menos <strong>$edad_minima</strong> años para registrarse<br>";
+				echo "Debes tener al menos <strong>$edad_minima</strong> años para registrarte. Ahora mismo tienes {$_POST['edad_usuario']}<br>";
 				$error = true;
 			}
 

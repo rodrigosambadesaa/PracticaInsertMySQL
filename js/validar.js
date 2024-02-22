@@ -188,7 +188,7 @@ formulario.addEventListener('submit', function (event) {
 
    const edadUsuario = fechaActual.getFullYear() - new Date(fechaNacimiento).getFullYear();
    if (edadUsuario < edadMinima) {
-       errorMessages += `Debes tener al menos ${edadMinima} años para registrarte<br>`;
+       errorMessages += `Debes tener al menos ${edadMinima} años para registrarte. Ahora mismo tienes ${edadUsuario}<br>`;
        error = true;
     }
 
