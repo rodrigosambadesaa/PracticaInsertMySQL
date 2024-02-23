@@ -58,7 +58,7 @@ formulario.addEventListener('submit', function (event) {
 
     // Validar la contraseña
     if (password.length < 4 || password.length > 20) {
-        errorMessages+= 'La <strong>contraseña</strong> debe tener entre 4 y 20 caracteres'
+        errorMessages += 'La <strong>contraseña</strong> debe tener entre 4 y 20 caracteres'
         error = true;
     }
 
@@ -82,18 +82,18 @@ formulario.addEventListener('submit', function (event) {
 
     // Validar que se haya ingresado una dirección de calle
     if (direccionCalle === '') {
-       errorMessages += 'Por favor, introduce tu <strong>dirección de calle</strong><br>';
-       error = true;
+        errorMessages += 'Por favor, introduce tu <strong>dirección de calle</strong><br>';
+        error = true;
     }
 
     // Validar la longitud de la dirección de calle
     if (direccionCalle.length < 5 || direccionCalle.length > 40) {
-       errorMessages += 'Por favor, introduce una <strong>dirección de calle</strong> válida entre 5 y 40 caracteres<br>';
-       error = true;
+        errorMessages += 'Por favor, introduce una <strong>dirección de calle</strong> válida entre 5 y 40 caracteres<br>';
+        error = true;
     }
 
     // Validar que se haya ingresado un bloque de dirección
-    if(direccionBloque !== '' && (direccionBloque.length < 1 || direccionBloque.length > 3)) {
+    if (direccionBloque !== '' && (direccionBloque.length < 1 || direccionBloque.length > 3)) {
         errorMessages += 'Por favor, introduce un <strong>bloque</strong> válido entre 3 y 20 caracteres<br>';
         error = true;
     }
@@ -106,8 +106,8 @@ formulario.addEventListener('submit', function (event) {
 
     // Validar que se haya ingresado un número de dirección
     if (direccionNumero === '') {
-       errorMessages += 'Por favor, introduce tu <strong>número</strong> de dirección<br>';
-       error = true;
+        errorMessages += 'Por favor, introduce tu <strong>número</strong> de dirección<br>';
+        error = true;
     }
 
     // Validar que el número de dirección sea un número natural positivo
@@ -124,14 +124,14 @@ formulario.addEventListener('submit', function (event) {
 
     // Validar que se haya ingresado una población
     if (poblacion === '') {
-       errorMessages += 'Por favor, introduce tu <strong>población</strong><br>';
-       error = true;
+        errorMessages += 'Por favor, introduce tu <strong>población</strong><br>';
+        error = true;
     }
 
     // Validar que se haya ingresado una población válida
     if (poblacion.length < 3 || poblacion.length > 40) {
-       errorMessages += 'Por favor, introduce una <strong>población</strong> válida entre 3 y 40 caracteres<br>';
-       error = true;
+        errorMessages += 'Por favor, introduce una <strong>población</strong> válida entre 3 y 40 caracteres<br>';
+        error = true;
     }
 
     // Validar que se haya ingresado una provincia
@@ -148,8 +148,8 @@ formulario.addEventListener('submit', function (event) {
 
     // Validar que la provincia sea un entero
     if (isNaN(provincia) || !Number.isInteger(Number(provincia))) {
-       errorMessages += 'Por favor, selecciona una <strong>provincia</strong> válida<br>';
-       error = true;
+        errorMessages += 'Por favor, selecciona una <strong>provincia</strong> válida<br>';
+        error = true;
     }
 
     // Validar que se haya ingresado un código postal
@@ -177,7 +177,40 @@ formulario.addEventListener('submit', function (event) {
         error = true;
     }
 
+    function validarUrl(url) {
+        // Validar el esquema
+        if (!/^https?:\/\//.test(url)) {
+            return false;
+        }
+
+        // Validar el nombre de dominio
+        const domain = new URL(url).hostname;
+        if (esDominioMalicioso(domain)) {
+            return false;
+        }
+
+        // Validar la ruta
+        const path = new URL(url).pathname;
+        if (/[\<\>\;]/.test(path)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    function esDominioMalicioso(domain) {
+        // Lista de dominios maliciosos conocidos
+        const listaDominiosMaliciosos = ["sitio1.com", "sitio2.com"];
+        return listaDominiosMaliciosos.includes(domain);
+    }
+
     if (paginaWeb !== '') {
+        if (!validarUrl(paginaWeb)) {
+            errorMessages += 'Por favor, introduce una <strong>página web</strong> válida<br>';
+            error = true;
+            return;
+        }
+
         try {
             const paginaWebUrl = new URL(paginaWeb);
         } catch (error) {
@@ -186,15 +219,15 @@ formulario.addEventListener('submit', function (event) {
         }
     }
 
-   const edadUsuario = fechaActual.getFullYear() - new Date(fechaNacimiento).getFullYear();
-   if (edadUsuario < edadMinima) {
-       errorMessages += `Debes tener al menos ${edadMinima} años para registrarte. Ahora mismo tienes ${edadUsuario}<br>`;
-       error = true;
+    const edadUsuario = fechaActual.getFullYear() - new Date(fechaNacimiento).getFullYear();
+    if (edadUsuario < edadMinima) {
+        errorMessages += `Debes tener al menos ${edadMinima} años para registrarte. Ahora mismo tienes ${edadUsuario}<br>`;
+        error = true;
     }
 
     // Validar que al menos un tema esté seleccionado
     const temasSeleccionados = document.querySelectorAll('input[name="temas[]"]:checked');
-    
+
     if (temasSeleccionados.length === 0) {
         errorMessages += 'Por favor, selecciona al menos un <strong>tema</strong><br>';
         error = true;
