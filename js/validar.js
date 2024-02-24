@@ -177,70 +177,11 @@ formulario.addEventListener('submit', function (event) {
         error = true;
     }
 
-    function validarUrl(url) {
-        // Validar el esquema
-        if (!/^https?:\/\//.test(url)) {
-            return false;
-        }
 
-        // Validar el nombre de dominio
-        const domain = new URL(url).hostname;
-        if (esDominioMalicioso(domain)) {
-            return false;
-        }
-
-        // Validar la ruta
-        const path = new URL(url).pathname;
-        if (/[\<\>\;]/.test(path)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    const fetch = require('node-fetch');
-
-    async function esDominioMalicioso(domain) {
-        try {
-            // URL de la API de abuse.ch para consultar dominios maliciosos
-            const apiUrl = `https://urlhaus.abuse.ch/api/domain/${domain}/`;
-
-            // Realiza la solicitud GET a la API
-            const response = await fetch(apiUrl);
-
-            // Verifica si la solicitud fue exitosa
-            if (response.ok) {
-                const data = await response.json();
-
-                // Comprueba si el dominio está en la lista de dominios maliciosos
-                if (data.query_status === "ok" && data.url_count > 0) {
-                    console.log(`${domain} es un dominio malicioso.`);
-                    return true;
-                } else {
-                    console.log(`${domain} no es un dominio malicioso.`);
-                    return false;
-                }
-            } else {
-                console.error(`Error al consultar la API: ${response.status} - ${response.statusText}`);
-                return false;
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            return false;
-        }
-    }
-
-
+    // Validar que la página web, si se ha introducido, sea válida
     if (paginaWeb !== '') {
-        if (!validarUrl(paginaWeb)) {
-            errorMessages += 'Por favor, introduce una <strong>página web</strong> válida<br>';
-            error = true;
-            return;
-        }
-
-        try {
-            const paginaWebUrl = new URL(paginaWeb);
-        } catch (error) {
+        const urlRegex = /^(http|https):\/\/[^ "]+$/;
+        if (!urlRegex.test(paginaWeb)) {
             errorMessages += 'Por favor, introduce una <strong>página web</strong> válida<br>';
             error = true;
         }
