@@ -9,6 +9,42 @@
 
 <body>
 	<?php
+
+		function esDominioMalicioso($domain)
+		{
+			try {
+				// URL de la API de abuse.ch para consultar dominios maliciosos
+				$apiUrl = 'https://urlhaus.abuse.ch/api/domain/' . urlencode($domain) . '/';
+
+				// Realiza la solicitud GET a la API
+				$response = file_get_contents($apiUrl);
+
+				// Verifica si la solicitud fue exitosa
+				if ($response !== false) {
+					$data = json_decode($response, true);
+
+					// Comprueba si el dominio está en la lista de dominios maliciosos
+					if ($data['query_status'] === 'ok' && $data['url_count'] > 0) {
+						echo $domain . ' es un dominio malicioso.';
+						return true;
+					} else {
+						echo $domain . ' no es un dominio malicioso.';
+						return false;
+					}
+				} else {
+					echo 'Error al consultar la API.';
+					return false;
+				}
+			} catch (Exception $e) {
+				echo 'Error: ' . $e->getMessage();
+				return false;
+			}
+		}
+
+	// Ejemplo de uso
+	$dominio = 'ejemplo.com';
+	esDominioMalicioso($dominio);
+
 	$error = false;
 	if ($_SERVER["REQUEST_METHOD"] === "POST") {
 		$num_variables = count($_POST); // Cuenta el número de variables recibidas por POST.
@@ -125,6 +161,14 @@
 			if (isset($_POST['web']) && !empty($_POST['web']) && filter_var($_POST['web'], FILTER_VALIDATE_URL) === false) {
 				echo "El <strong>sitio web</strong> no es válido: <strong>{$_POST['web']}</strong><br>";
 				$error = true;
+			}
+
+			// Validar que el dominio del sitio web no sea malicioso.
+			if (isset($_POST['web']) && !empty($_POST['web'])) {
+				$dominio = parse_url($_POST['web'], PHP_URL_HOST);
+				if (esDominioMalicioso($dominio)) {
+					$error = true;
+				}
 			}
 
 			$a_counts = array();
