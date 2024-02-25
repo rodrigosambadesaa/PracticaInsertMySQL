@@ -63,7 +63,7 @@ INSERT INTO `mi_empresa`.`temas` (`correo`, `tema`) VALUES
 DROP TABLE IF EXISTS `mi_empresa`.`usuario`;
 CREATE TABLE IF NOT EXISTS `mi_empresa`.`usuario` (
   `correo` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `clave` char(32) COLLATE utf8_spanish_ci NOT NULL,
+  `clave` char(128) COLLATE utf8_spanish_ci NOT NULL,
   `nombre` varchar(80) COLLATE utf8_spanish_ci NOT NULL,
   `calle` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
 

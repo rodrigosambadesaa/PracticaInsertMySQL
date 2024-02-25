@@ -61,13 +61,12 @@
 				$error = true;
 			}
 
-			// Validar que la contraseña no esté vacía, tenga entre 4 y 20 caracteres y las contraseñas coincidan.
-			if (!isset($_POST['clave']) || strlen($_POST['clave']) < 4 || strlen($_POST['clave']) > 20) {
-				echo "La <strong>contraseña</strong> debe tener entre 4 y 20 caracteres: {$_POST['correo']}<br>";
+			// Validar que las contraseñas sean hashes SHA-512 válidos.
+			if (!isset($_POST['clave']) || !isset($_POST['clave_repe']) || strlen($_POST['clave']) !== 128 || strlen($_POST['clave_repe']) !== 128) {
+				echo "Las <strong>contraseñas</strong> no son válidas<br>";
 				$error = true;
-			} elseif (!isset($_POST['clave_repe']) || $_POST['clave'] !== $_POST['clave_repe']) {
-				echo "Las <strong>contraseñas</strong> deben coincidir:<br>";
-				echo "<ol><li>Contraseña: {$_POST['clave']}</li><li>Repetir Contraseña: {$_POST['clave_repe']}</li></ol>";
+			} elseif ($_POST['clave'] !== $_POST['clave_repe']) {
+				echo "Las <strong>contraseñas</strong> no coinciden<br>";
 				$error = true;
 			}
 
@@ -242,15 +241,6 @@
 
 				// Preparar las consultas
 				// Tabla usuarios
-				// Encriptar la contraseña.
-				/* IMPORTANTE: La cadena devuelta por la función hash siempre tiene una longitud de 32 caracteres.
-							Por lo tanto, ajustamos la longitud de la contraseña en la base de datos a 32 caracteres */
-				/* //Esto es mejor que encriptarlo directamente en la consulta porque nunca guardamos el valor original (texto plano) de la contraseña en la variable.
-							Siempre se almacenará encriptada. Hemos elegido el algoritmo md5: https://es.wikipedia.org/wiki/MD5 */
-				$clave = hash("md5", $_POST['clave']);
-
-				/* Por razones de seguridad, una vez que los datos han sido validados, destruimos la variable $clave_repe */
-				unset($_POST['clave_repe']);
 
 				$sentencia_sql = "INSERT INTO `mi_empresa`.`usuarios` (`correo`, `clave`, `nombre`, `calle`, `bloque`, `escalera`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`, `sobre_usuario`) VALUES ('{$_POST['correo']}', '$clave', '{$_POST['nombre']}', '{$_POST['calle']}', '{$_POST['bloque']}', '{$_POST['escalera']}', '{$_POST['numero']}', '{$_POST['piso']}', '{$_POST['poblacion']}', '{$_POST['provincia']}', '{$_POST['codigo_postal']}', '{$_POST['estado_civil']}', '{$_POST['fecha_nacimiento']}', '{$_POST['web']}', '{$_POST['sobre_usted']}');";
 

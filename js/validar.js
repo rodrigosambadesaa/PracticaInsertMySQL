@@ -49,6 +49,15 @@ formulario.addEventListener('submit', function (event) {
     let errorMessages = "";
     let error = false;
 
+    async function checkVirusTotal(url, apiKey) {
+        const response = await fetch(url);
+        const data = await response.json();
+        if (data.positives > 0) {
+            return true;
+        }
+        return false;
+    }
+
     // Validar el email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email) || email.length < 5 || email.length > 320) {
@@ -57,8 +66,8 @@ formulario.addEventListener('submit', function (event) {
     }
 
     // Validar la contraseña
-    if (password.length < 4 || password.length > 20) {
-        errorMessages += 'La <strong>contraseña</strong> debe tener entre 4 y 20 caracteres'
+    if (password.length < 15) {
+        errorMessages += 'La <strong>contraseña</strong> debe tener al menos 15 caracteres<br>';
         error = true;
     }
 
@@ -66,6 +75,11 @@ formulario.addEventListener('submit', function (event) {
     if (password !== confirmPassword) {
         errorMessages += 'Las <strong>contraseñas</strong> no coinciden<br>';
         error = true;
+    } else {
+        // Encriptar las contraseñas con SHA-512
+        const sha512 = new Hashes.SHA512;
+        password = sha512.hex(password);
+        confirmPassword = sha512.hex(confirmPassword);
     }
 
     // Validar que se haya ingresado un nombre y apellidos
@@ -180,11 +194,21 @@ formulario.addEventListener('submit', function (event) {
 
     // Validar que la página web, si se ha introducido, sea válida
     if (paginaWeb !== '') {
-        const urlRegex = /^(http|https):\/\/[^ "]+$/;
-        if (!urlRegex.test(paginaWeb)) {
+        // Validar que la página web sea válida y que no esté en una base de datos de páginas web maliciosas
+        const paginaWebRegex = /^(http|https):\/\/[a-z0-9\.-]+\.[a-z]{2,4}/;
+        if (!paginaWebRegex.test(paginaWeb)) {
             errorMessages += 'Por favor, introduce una <strong>página web</strong> válida<br>';
             error = true;
         }
+        
+        const virusTotalAPIKey = '1d7d62b2b3dc21f9d8114da33fc9d32c3d82bca763096022777f16f82d1f9117';
+        checkVirusTotal(`https://www.virustotal.com/vtapi/v2/url/report?apikey=${virusTotalAPIKey}&resource=${paginaWeb}`, virusTotalAPIKey)
+            .then((isMalicious) => {
+                if (isMalicious) {
+                    errorMessages += 'La <strong>página web</strong> introducida no es segura<br>';
+                    error = true;
+                }
+            });
     }
 
     const edadUsuario = fechaActual.getFullYear() - new Date(fechaNacimiento).getFullYear();
