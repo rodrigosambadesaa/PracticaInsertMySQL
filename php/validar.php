@@ -10,6 +10,11 @@
 <body>
 	<?php
 
+	function hashSHA512($string)
+	{
+		return hash('sha512', $string);
+	}
+
 	function checkVirusTotal($url, $api_key)
 	{
 		// URL de la API de VirusTotal para consultar URLs maliciosas
@@ -84,8 +89,8 @@
 			}
 
 			// Validar que las contraseñas sean hashes SHA-512 válidos.
-			if (!isset($_POST['clave']) || !isset($_POST['clave_repe']) || strlen($_POST['clave']) !== 128 || strlen($_POST['clave_repe']) !== 128) {
-				echo "Las <strong>contraseñas</strong> no son válidas<br>";
+			if (!isset($_POST['clave']) || !isset($_POST['clave_repe']) || strlen($_POST['clave']) < 15 || strlen($_POST['clave_repe']) < 15) {
+				echo "Las <strong>contraseñas</strong> deben tener al menos 15 caracteres<br>";
 				$error = true;
 			} elseif ($_POST['clave'] !== $_POST['clave_repe']) {
 				echo "Las <strong>contraseñas</strong> no coinciden<br>";
@@ -261,6 +266,10 @@
 
 				// Preparar las consultas
 				// Tabla usuarios
+
+				// Encriptar la contraseña con SHA-512
+				$clave = hashSHA512($_POST['clave']);
+				unset($_POST['clave_repe']); // Eliminar la contraseña repetida del array de datos.
 
 				$sentencia_sql = "INSERT INTO `mi_empresa`.`usuarios` (`correo`, `clave`, `nombre`, `calle`, `bloque`, `escalera`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`, `sobre_usuario`) VALUES ('{$_POST['correo']}', '$clave', '{$_POST['nombre']}', '{$_POST['calle']}', '{$_POST['bloque']}', '{$_POST['escalera']}', '{$_POST['numero']}', '{$_POST['piso']}', '{$_POST['poblacion']}', '{$_POST['provincia']}', '{$_POST['codigo_postal']}', '{$_POST['estado_civil']}', '{$_POST['fecha_nacimiento']}', '{$_POST['web']}', '{$_POST['sobre_usted']}');";
 
