@@ -184,14 +184,6 @@
 				$error = true;
 			}
 
-			// Validar que el sitio web, si se ha ingresado, no sea malicioso.
-			if (isset($_POST['web']) && !empty($_POST['web'])) {
-				if (checkVirusTotal($_POST['web'], '1d7d62b2b3dc21f9d8114da33fc9d32c3d82bca763096022777f16f82d1f9117')) {
-					echo "El <strong>sitio web</strong> es malicioso: <strong>{$_POST['web']}</strong><br>";
-					$error = true;
-				}
-			}
-
 			// Validar que el dominio del sitio web no sea malicioso.
 			if (isset($_POST['web']) && !empty($_POST['web']) && esDominioMalicioso(parse_url($_POST['web'], PHP_URL_HOST))) {
 				echo "El <strong>dominio</strong> del sitio web es malicioso: <strong>{$_POST['web']}</strong><br>";
