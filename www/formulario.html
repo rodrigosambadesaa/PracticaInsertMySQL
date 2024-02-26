@@ -9,9 +9,13 @@
 
 <body>
 	<h1>FORMULARIO DE REGISTRO</h1>
-	<form method="POST" action="../php/registro.php" id="formulario">
+	<form method="POST" action="../php/registro.php" id="formulario" enctype="multipart/form-data">
 		<fieldset>
 			<legend>Datos de identificación</legend>
+			<div>
+				<label for="foto_de_perfil">Foto de perfil</label>
+				<input type="file" id="foto_de_perfil" name="foto_de_perfil">
+			</div>
 			<div>
 				<label for="email">e-mail <span class="red">*</span></label>
 				<input type="email" id="email" name="correo" size="25" maxlength="320" required>

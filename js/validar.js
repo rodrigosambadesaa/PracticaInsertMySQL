@@ -81,6 +81,7 @@ formulario.addEventListener('submit', function (event) {
     const edadMinima = 13;
 
     // Realizar las validaciones necesarias
+    const foto = document.getElementById('foto').value.trim();
     const nombre = document.getElementById('nombre').value.trim();
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
@@ -108,6 +109,12 @@ formulario.addEventListener('submit', function (event) {
             return true;
         }
         return false;
+    }
+
+    // Validar que se haya seleccionado una foto
+    if (foto === '') {
+        errorMessages += 'Por favor, selecciona una <strong>foto</strong><br>';
+        error = true;
     }
 
     // Validar el email

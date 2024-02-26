@@ -41,6 +41,32 @@
 		}
 	}
 
+	function checkVirusTotalFoto($foto, $api_key)
+	{
+		// URL de la API de VirusTotal para consultar archivos maliciosos
+		$api_url = 'https://www.virustotal.com/vtapi/v2/file/report?apikey=' . $api_key . '&resource=' . urlencode($foto);
+
+		// Realiza la solicitud GET a la API
+		$response = file_get_contents($api_url);
+
+		// Verifica si la solicitud fue exitosa
+		if ($response !== false) {
+			$data = json_decode($response, true);
+
+			// Comprueba si el archivo está en la lista de archivos maliciosos
+			if ($data['response_code'] === 1 && $data['positives'] > 0) {
+				echo $foto . ' es un archivo malicioso.';
+				return true;
+			} else {
+				echo $foto . ' no es un archivo malicioso.';
+				return false;
+			}
+		} else {
+			echo 'Error al consultar la API.';
+			return false;
+		}
+	}
+
 	function esDominioMalicioso($domain)
 	{
 		try {
@@ -78,6 +104,20 @@
 		// Validación de los datos recibidos por POST.
 		if ($num_variables >= 1) {
 			$edad_minima = 13; // Edad mínima para registrarse.
+
+			// Validar que se ha seleccionado una foto de perfil.
+			if (!isset($_FILES['foto']) || $_FILES['foto']['error'] !== 0) {
+				echo "Debes seleccionar una <strong>foto de perfil</strong><br>";
+				$error = true;
+			}
+
+			// Validar que la foto no sea maliciosa.
+			if (isset($_FILES['foto']) && $_FILES['foto']['error'] === 0) {
+				if(checkVirusTotalFoto($_FILES['foto']['tmp_name'], 'API_KEY')) {
+					echo "La <strong>foto de perfil</strong> es maliciosa<br>";
+					$error = true;
+				}
+			}
 
 			// Validar que el email no esté vacío, tenga entre 5 y 320 caracteres y sea un email válido.
 			if (!isset($_POST['correo']) || strlen(trim($_POST['correo'])) < 5 || strlen(trim($_POST['correo'])) > 320) {
@@ -271,6 +311,7 @@
 				$clave = hashSHA512($_POST['clave']);
 				unset($_POST['clave_repe']); // Eliminar la contraseña repetida del array de datos.
 
+				$foto = $_FILES['foto']['name'];
 				$correo = trim($_POST['correo']);
 				$nombre = trim($_POST['nombre']);
 				$calle = trim($_POST['calle']);
@@ -286,7 +327,7 @@
 				$web = trim($_POST['web']);
 				$sobre_usted = trim($_POST['sobre_usted']);
 
-				$sentencia_sql = "INSERT INTO `mi_empresa`.`usuarios` (`correo`, `clave`, `nombre`, `calle`, `bloque`, `escalera`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`, `sobre_usuario`) VALUES ('$correo', '$clave', '$nombre', '$calle', '$bloque', '$escalera', '$numero', '$piso', '$poblacion', '$provincia', '$codigo_postal', '$estado_civil', '$fecha_nacimiento', '$web', '$sobre_usted');";
+				$sentencia_sql = "INSERT INTO `mi_empresa`.`usuarios` (`foto`, `correo`, `clave`, `nombre`, `calle`, `bloque`, `escalera`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`, `sobre_usted`) VALUES ('$foto', '$correo', '$clave', '$nombre', '$calle', '$bloque', '$escalera', '$numero', '$piso', '$poblacion', '$provincia', '$codigo_postal', '$estado_civil', '$fecha_nacimiento', '$web', '$sobre_usted');";
 
 				// Ejecutar la consulta de inserción
 				mysqli_query($conexion, $sentencia_sql) or die("<strong>Fallo en la inserción, causa:</strong> " . mysqli_error($conexion));
