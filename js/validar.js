@@ -10,9 +10,9 @@ const errorDiv = document.createElement('div');
 errorDiv.classList.add('error-message');
 formulario.appendChild(errorDiv);
 
-function hashSHA512(s) { 
+function hashSHA512(s) {
     return new Hashes(s);
-}   
+}
 
 class Hashes {
 
@@ -129,8 +129,8 @@ formulario.addEventListener('submit', function (event) {
         error = true;
     } else {
         // Encriptar las contraseñas con SHA-512
-       password = hashSHA512(password);
-       confirmPassword = hashSHA512(confirmPassword);
+        password = hashSHA512(password);
+        confirmPassword = hashSHA512(confirmPassword);
     }
 
     // Validar que se haya ingresado un nombre y apellidos
@@ -176,7 +176,7 @@ formulario.addEventListener('submit', function (event) {
     }
 
     // Validar que el número de dirección sea un número natural positivo
-    if (isNaN(direccionNumero) || direccionNumero <= 0 || direccionNumero % 1 !== 0) {
+    if (isNaN(direccionNumero) || direccionNumero <= 0 || !Number.isInteger(Number(direccionNumero))) {
         errorMessages += 'Por favor, introduce un <strong>número</strong> de dirección válido<br>';
         error = true;
     }
@@ -242,6 +242,11 @@ formulario.addEventListener('submit', function (event) {
         error = true;
     }
 
+    const edadUsuario = fechaActual.getFullYear() - new Date(fechaNacimiento).getFullYear();
+    if (edadUsuario < edadMinima) {
+        errorMessages += `Debes tener al menos ${edadMinima} años para registrarte. Ahora mismo tienes ${edadUsuario}<br>`;
+        error = true;
+    }
 
     // Validar que la página web, si se ha introducido, sea válida
     if (paginaWeb !== '') {
@@ -251,7 +256,7 @@ formulario.addEventListener('submit', function (event) {
             errorMessages += 'Por favor, introduce una <strong>página web</strong> válida<br>';
             error = true;
         }
-        
+
         const virusTotalAPIKey = '1d7d62b2b3dc21f9d8114da33fc9d32c3d82bca763096022777f16f82d1f9117';
         checkVirusTotal(`https://www.virustotal.com/vtapi/v2/url/report?apikey=${virusTotalAPIKey}&resource=${paginaWeb}`, virusTotalAPIKey)
             .then((isMalicious) => {
@@ -262,11 +267,6 @@ formulario.addEventListener('submit', function (event) {
             });
     }
 
-    const edadUsuario = fechaActual.getFullYear() - new Date(fechaNacimiento).getFullYear();
-    if (edadUsuario < edadMinima) {
-        errorMessages += `Debes tener al menos ${edadMinima} años para registrarte. Ahora mismo tienes ${edadUsuario}<br>`;
-        error = true;
-    }
 
     // Validar que al menos un tema esté seleccionado
     const temasSeleccionados = document.querySelectorAll('input[name="temas[]"]:checked');
