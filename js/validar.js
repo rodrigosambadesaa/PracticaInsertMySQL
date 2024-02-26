@@ -10,6 +10,58 @@ const errorDiv = document.createElement('div');
 errorDiv.classList.add('error-message');
 formulario.appendChild(errorDiv);
 
+function hashSHA512(s) { 
+    return new Hashes(s);
+}   
+
+class Hashes {
+
+    constructor() {
+        this.hexcase = 0;
+        this.b64pad = "";
+    }
+
+    constructor(s) {
+        return this.rstr2hex(this.rstr(s));
+    }
+
+    hex(s) {
+        return this.rstr2hex(this.rstr(s));
+    }
+
+    rstr(s) {
+        return this.binl2rstr(this.binl(s));
+    }
+
+    binl(s) {
+        const bin = [];
+        const mask = (1 << 8) - 1;
+        for (let i = 0; i < s.length * 8; i += 8) {
+            bin[i >> 5] |= (s.charCodeAt(i / 8) & mask) << (24 - i % 32);
+        }
+        return bin;
+    }
+
+    binl2rstr(input) {
+        let output = "";
+        for (let i = 0; i < input.length * 32; i += 8) {
+            output += String.fromCharCode((input[i >> 5] >> (24 - i % 32)) & 0xFF);
+        }
+        return output;
+    }
+
+    rstr2hex(input) {
+        const hexTab = "0123456789abcdef";
+        let output = "";
+        for (let i = 0; i < input.length; i++) {
+            const x = input.charCodeAt(i);
+            output += hexTab.charAt((x >> 4) & 0x0F) + hexTab.charAt(x & 0x0F);
+        }
+        return output;
+    }
+
+}
+
 // Agregar un evento de escucha para el envío del formulario
 formulario.addEventListener('submit', function (event) {
     // Detener el envío del formulario
@@ -77,9 +129,8 @@ formulario.addEventListener('submit', function (event) {
         error = true;
     } else {
         // Encriptar las contraseñas con SHA-512
-        const sha512 = new Hashes.SHA512;
-        password = sha512.hex(password);
-        confirmPassword = sha512.hex(confirmPassword);
+       password = hashSHA512(password);
+       confirmPassword = hashSHA512(confirmPassword);
     }
 
     // Validar que se haya ingresado un nombre y apellidos

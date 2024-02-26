@@ -10,6 +10,31 @@
 <body>
 	<?php
 
+		function checkVirusTotal($url, $api_key) {
+			// URL de la API de VirusTotal para consultar URLs maliciosas
+			$api_url = 'https://www.virustotal.com/vtapi/v2/url/report?apikey=' . $api_key . '&resource=' . urlencode($url);
+
+			// Realiza la solicitud GET a la API
+			$response = file_get_contents($api_url);
+
+			// Verifica si la solicitud fue exitosa
+			if ($response !== false) {
+				$data = json_decode($response, true);
+
+				// Comprueba si la URL está en la lista de URLs maliciosas
+				if ($data['response_code'] === 1 && $data['positives'] > 0) {
+					echo $url . ' es una URL maliciosa.';
+					return true;
+				} else {
+					echo $url . ' no es una URL maliciosa.';
+					return false;
+				}
+			} else {
+				echo 'Error al consultar la API.';
+				return false;
+			}
+		}
+
 		function esDominioMalicioso($domain)
 		{
 			try {
@@ -160,6 +185,14 @@
 			if (isset($_POST['web']) && !empty($_POST['web']) && filter_var($_POST['web'], FILTER_VALIDATE_URL) === false) {
 				echo "El <strong>sitio web</strong> no es válido: <strong>{$_POST['web']}</strong><br>";
 				$error = true;
+			}
+
+			// Validar que el sitio web, si se ha ingresado, no sea malicioso.
+			if (isset($_POST['web']) && !empty($_POST['web'])) {
+				if (checkVirusTotal($_POST['web'], '1d7d62b2b3dc21f9d8114da33fc9d32c3d82bca763096022777f16f82d1f9117')) {
+					echo "El <strong>sitio web</strong> es malicioso: <strong>{$_POST['web']}</strong><br>";
+					$error = true;
+				}
 			}
 
 			// Validar que el dominio del sitio web no sea malicioso.
