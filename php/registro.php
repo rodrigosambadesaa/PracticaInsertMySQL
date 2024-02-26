@@ -80,7 +80,7 @@
 			$edad_minima = 13; // Edad mínima para registrarse.
 
 			// Validar que el email no esté vacío, tenga entre 5 y 320 caracteres y sea un email válido.
-			if (!isset($_POST['correo']) || strlen($_POST['correo']) < 5 || strlen($_POST['correo']) > 320) {
+			if (!isset($_POST['correo']) || strlen(trim($_POST['correo'])) < 5 || strlen(trim($_POST['correo'])) > 320) {
 				echo "El <strong>email</strong> debe tener entre 5 y 320 caracteres: {$_POST['correo']}<br>";
 				$error = true;
 			} elseif (filter_var($_POST['correo'], FILTER_VALIDATE_EMAIL) === false) {
@@ -89,76 +89,76 @@
 			}
 
 			// Validar que las contraseñas sean hashes SHA-512 válidos.
-			if (!isset($_POST['clave']) || !isset($_POST['clave_repe']) || strlen($_POST['clave']) < 15 || strlen($_POST['clave_repe']) < 15) {
+			if (!isset($_POST['clave']) || !isset($_POST['clave_repe']) || strlen(trim($_POST['clave'])) < 15 || strlen(trim($_POST['clave_repe'])) < 15) {
 				echo "Las <strong>contraseñas</strong> deben tener al menos 15 caracteres<br>";
 				$error = true;
-			} elseif ($_POST['clave'] !== $_POST['clave_repe']) {
+			} elseif (trim($_POST['clave']) !== trim($_POST['clave_repe'])) {
 				echo "Las <strong>contraseñas</strong> no coinciden<br>";
 				$error = true;
 			}
 
 			// Validar que el nombre no esté vacío y tenga entre 3 y 80 caracteres.
-			if (!isset($_POST['nombre']) || strlen($_POST['nombre']) < 3 || strlen($_POST['nombre']) > 80) {
+			if (!isset($_POST['nombre']) || strlen(trim($_POST['nombre'])) < 3 || strlen(trim($_POST['nombre'])) > 80) {
 				echo "El <strong>nombre</strong> debe tener entre 3 y 80 caracteres: {$_POST['nombre']}<br>";
 				$error = true;
 			}
 
 			// Validar que la calle no esté vacía y tenga entre 5 y 40 caracteres.
-			if (!isset($_POST['calle']) || strlen($_POST['calle']) < 5 || strlen($_POST['calle']) > 40) {
+			if (!isset($_POST['calle']) || strlen(trim($_POST['calle'])) < 5 || strlen(trim($_POST['calle'])) > 40) {
 				echo "La <strong>calle</strong> debe tener entre 5 y 40 caracteres: {$_POST['calle']}<br>";
 				$error = true;
 			}
 
 			// Validar que el bloque, si se ha ingresado, tenga entre 1 y 3 caracteres.
-			if (isset($_POST['bloque']) && !empty($_POST['bloque']) && (strlen($_POST['bloque']) < 1 || strlen($_POST['bloque']) > 3)) {
+			if (isset($_POST['bloque']) && !empty($_POST['bloque']) && (strlen(trim($_POST['bloque'])) < 1 || strlen(trim($_POST['bloque'])) > 3)) {
 				echo "El <strong>bloque</strong> debe tener entre 1 y 3 caracteres: {$_POST['bloque']}<br>";
 				$error = true;
 			}
 
 			// Validar que la escalera, si se ha ingresado, tenga entre 1 y 3 caracteres.
-			if (isset($_POST['escalera']) && !empty($_POST['escalera']) && (strlen($_POST['escalera']) < 1 || strlen($_POST['escalera']) > 3)) {
+			if (isset($_POST['escalera']) && !empty($_POST['escalera']) && (strlen(trim($_POST['escalera'])) < 1 || strlen(trim($_POST['escalera'])) > 3)) {
 				echo "La <strong>escalera</strong> debe tener entre 1 y 3 caracteres: {$_POST['escalera']}<br>";
 				$error = true;
 			}
 
 			// Validar que el número no esté vacío y sea un entero positivo.
-			if (!isset($_POST['numero']) || !ctype_digit($_POST['numero']) || $_POST['numero'] <= 0) {
+			if (!isset($_POST['numero']) || !ctype_digit(trim($_POST['numero'])) || (int) trim($_POST['numero']) <= 0) {
 				echo "El <strong>número</strong> no es válido: {$_POST['numero']}<br>";
 				$error = true;
 			}
 
 			// Validar que el piso, si se ha ingresado, tenga entre 3 y 20 caracteres.
-			if (isset($_POST['piso']) && !empty($_POST['piso']) && (strlen($_POST['piso']) < 3 || strlen($_POST['piso']) > 20)) {
+			if (isset($_POST['piso']) && !empty($_POST['piso']) && (strlen(trim($_POST['piso'])) < 3 || strlen(trim($_POST['piso'])) > 20)) {
 				echo "El <strong>piso</strong> debe tener entre 3 y 20 caracteres: {$_POST['piso']}<br>";
 				$error = true;
 			}
 
 			// Validar que la ciudad no esté vacía y tenga entre 3 y 40 caracteres.
-			if (!isset($_POST['poblacion']) || strlen($_POST['poblacion']) < 3 || strlen($_POST['poblacion']) > 40) {
+			if (!isset($_POST['poblacion']) || strlen(trim($_POST['poblacion'])) < 3 || strlen(trim($_POST['poblacion'])) > 40) {
 				echo "La <strong>ciudad</strong> debe tener entre 3 y 40 caracteres: {$_POST['poblacion']}<br>";
 				$error = true;
 			}
 
 			// Validar que la provincia no esté vacía y sea un entero entre 1 y 4.
-			if (!isset($_POST['provincia']) || $_POST['provincia'] < 1 || $_POST['provincia'] > 4) {
+			if (!isset($_POST['provincia']) || (int) trim($_POST['provincia']) < 1 || (int) trim($_POST['provincia']) > 4) {
 				echo "Debes seleccionar una <strong>provincia</strong>: {$_POST['provincia']}<br>";
 				$error = true;
 			}
 
 			// Validar que la provincia sea un entero.
-			if (!ctype_digit($_POST['provincia'])) {
+			if (!ctype_digit((int) trim($_POST['provincia']))) {
 				echo "La <strong>provincia</strong> debe ser un valor entero: {$_POST['provincia']}<br>";
 				$error = true;
 			}
 
 			// Validar que el código postal no esté vacío y sea un entero de 5 dígitos.
-			if (!isset($_POST['codigo_postal']) || !ctype_digit($_POST['codigo_postal']) || strlen($_POST['codigo_postal']) !== 5) {
+			if (!isset($_POST['codigo_postal']) || !ctype_digit((int) trim($_POST['codigo_postal'])) || strlen(trim($_POST['codigo_postal'])) !== 5) {
 				echo "El <strong>código postal</strong> debe tener 5 dígitos: {$_POST['codigo_postal']}<br>";
 				$error = true;
 			}
 
 			// Validar que el estado civil no esté vacío y sea un entero de 1 dígito.
-			if (!isset($_POST['estado_civil']) || strlen($_POST['estado_civil']) !== 1) {
+			if (!isset($_POST['estado_civil']) || strlen((int) trim($_POST['estado_civil'])) !== 1) {
 				echo "Debes seleccionar un <strong>estado civil</strong>: {$_POST['estado_civil']}<br>";
 				$error = true;
 			}
@@ -170,7 +170,7 @@
 			}
 
 			// Validar que la fecha de nacimiento sea anterior a la fecha actual.
-			if ($_POST['fecha_nacimiento'] >= date("Y-m-d")) {
+			if (trim($_POST['fecha_nacimiento']) >= date("Y-m-d")) {
 				echo "La <strong>fecha de nacimiento</strong> debe ser anterior o igual a la fecha actual: {$_POST['fecha_nacimiento']}<br>";
 				$error = true;
 			}
@@ -184,13 +184,13 @@
 			}
 
 			// Validar que el sitio web, si se ha ingresado, sea una URL válida.
-			if (isset($_POST['web']) && !empty($_POST['web']) && filter_var($_POST['web'], FILTER_VALIDATE_URL) === false) {
+			if (isset($_POST['web']) && !empty($_POST['web']) && filter_var(trim($_POST['web']), FILTER_VALIDATE_URL) === false) {
 				echo "El <strong>sitio web</strong> no es válido: <strong>{$_POST['web']}</strong><br>";
 				$error = true;
 			}
 
 			// Validar que el dominio del sitio web no sea malicioso.
-			if (isset($_POST['web']) && !empty($_POST['web']) && esDominioMalicioso(parse_url($_POST['web'], PHP_URL_HOST))) {
+			if (isset($_POST['web']) && !empty($_POST['web']) && esDominioMalicioso(parse_url(trim($_POST['web']), PHP_URL_HOST))) {
 				echo "El <strong>dominio</strong> del sitio web es malicioso: <strong>{$_POST['web']}</strong><br>";
 				$error = true;
 			}
@@ -213,7 +213,7 @@
 			}
 
 			// Validar que el campo "sobre ti" no esté vacío.
-			if (!isset($_POST['sobre_usted']) || strlen($_POST['sobre_usted']) === 0) {
+			if (!isset($_POST['sobre_usted']) || strlen(trim($_POST['sobre_usted'])) === 0) {
 				echo "Debes completar el campo <strong>sobre ti</strong><br>";
 				$error = true;
 			}
@@ -271,7 +271,22 @@
 				$clave = hashSHA512($_POST['clave']);
 				unset($_POST['clave_repe']); // Eliminar la contraseña repetida del array de datos.
 
-				$sentencia_sql = "INSERT INTO `mi_empresa`.`usuarios` (`correo`, `clave`, `nombre`, `calle`, `bloque`, `escalera`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`, `sobre_usuario`) VALUES ('{$_POST['correo']}', '$clave', '{$_POST['nombre']}', '{$_POST['calle']}', '{$_POST['bloque']}', '{$_POST['escalera']}', '{$_POST['numero']}', '{$_POST['piso']}', '{$_POST['poblacion']}', '{$_POST['provincia']}', '{$_POST['codigo_postal']}', '{$_POST['estado_civil']}', '{$_POST['fecha_nacimiento']}', '{$_POST['web']}', '{$_POST['sobre_usted']}');";
+				$correo = trim($_POST['correo']);
+				$nombre = trim($_POST['nombre']);
+				$calle = trim($_POST['calle']);
+				$bloque = trim($_POST['bloque']);
+				$escalera = trim($_POST['escalera']);
+				$numero = trim($_POST['numero']);
+				$piso = trim($_POST['piso']);
+				$poblacion = trim($_POST['poblacion']);
+				$provincia = trim($_POST['provincia']);
+				$codigo_postal = trim($_POST['codigo_postal']);
+				$estado_civil = trim($_POST['estado_civil']);
+				$fecha_nacimiento = trim($_POST['fecha_nacimiento']);
+				$web = trim($_POST['web']);
+				$sobre_usted = trim($_POST['sobre_usted']);
+
+				$sentencia_sql = "INSERT INTO `mi_empresa`.`usuarios` (`correo`, `clave`, `nombre`, `calle`, `bloque`, `escalera`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`, `sobre_usuario`) VALUES ('$correo', '$clave', '$nombre', '$calle', '$bloque', '$escalera', '$numero', '$piso', '$poblacion', '$provincia', '$codigo_postal', '$estado_civil', '$fecha_nacimiento', '$web', '$sobre_usted');";
 
 				// Ejecutar la consulta de inserción
 				mysqli_query($conexion, $sentencia_sql) or die("<strong>Fallo en la inserción, causa:</strong> " . mysqli_error($conexion));
@@ -289,6 +304,8 @@
 			// Si no se ha recibido ningún dato del formulario, mostrar un mensaje de error.
 			die("No se ha recibido ningún dato del formulario");
 		}
+	} else {
+		echo "Acceso denegado";
 	}
 	?>
 </body>

@@ -81,21 +81,21 @@ formulario.addEventListener('submit', function (event) {
     const edadMinima = 13;
 
     // Realizar las validaciones necesarias
-    const nombre = document.getElementById('nombre').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
-    const direccionCalle = document.getElementById('direccionCalle').value;
-    const direccionBloque = document.getElementById('direccionBloque').value;
-    const direccionEscalera = document.getElementById('direccionEscalera').value;
-    const direccionNumero = document.getElementById('direccionNumero').value;
-    const direccionPiso = document.getElementById('direccionPiso').value;
-    const poblacion = document.getElementById('poblacion').value;
-    const provincia = document.getElementById('provincia').value;
-    const codigoPostal = document.getElementById('codigoPostal').value;
-    const estadoCivil = document.getElementById('estadoCivil').value;
-    const fechaNacimiento = document.getElementById('fecha_nacimiento').value;
-    const paginaWeb = document.getElementById('paginaWeb').value;
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const confirmPassword = document.getElementById('confirmPassword').value.trim();
+    const direccionCalle = document.getElementById('direccionCalle').value.trim();
+    const direccionBloque = document.getElementById('direccionBloque').value.trim();
+    const direccionEscalera = document.getElementById('direccionEscalera').value.trim();
+    const direccionNumero = document.getElementById('direccionNumero').value.trim();
+    const direccionPiso = document.getElementById('direccionPiso').value.trim();
+    const poblacion = document.getElementById('poblacion').value.trim();
+    const provincia = document.getElementById('provincia').value.trim();
+    const codigoPostal = document.getElementById('codigoPostal').value.trim();
+    const estadoCivil = document.getElementById('estadoCivil').value.trim();
+    const fechaNacimiento = document.getElementById('fecha_nacimiento').value.trim();
+    const paginaWeb = document.getElementById('paginaWeb').value.trim();
     const terminos = document.getElementById('terminos').checked;
 
     let errorMessages = "";
@@ -277,7 +277,7 @@ formulario.addEventListener('submit', function (event) {
     }
 
     // Validar que el textarea de sobre usted no esté vacío
-    const sobreUsted = document.getElementById('sobre_usted').value;
+    const sobreUsted = document.getElementById('sobre_usted').value.trim();
     if (sobreUsted === '') {
         errorMessages += 'Por favor, rellena el campo <strong>sobre usted</strong><br>';
         error = true;
