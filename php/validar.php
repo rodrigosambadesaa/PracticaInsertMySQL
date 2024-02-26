@@ -10,65 +10,62 @@
 <body>
 	<?php
 
-		function checkVirusTotal($url, $api_key) {
-			// URL de la API de VirusTotal para consultar URLs maliciosas
-			$api_url = 'https://www.virustotal.com/vtapi/v2/url/report?apikey=' . $api_key . '&resource=' . urlencode($url);
+	function checkVirusTotal($url, $api_key)
+	{
+		// URL de la API de VirusTotal para consultar URLs maliciosas
+		$api_url = 'https://www.virustotal.com/vtapi/v2/url/report?apikey=' . $api_key . '&resource=' . urlencode($url);
+
+		// Realiza la solicitud GET a la API
+		$response = file_get_contents($api_url);
+
+		// Verifica si la solicitud fue exitosa
+		if ($response !== false) {
+			$data = json_decode($response, true);
+
+			// Comprueba si la URL está en la lista de URLs maliciosas
+			if ($data['response_code'] === 1 && $data['positives'] > 0) {
+				echo $url . ' es una URL maliciosa.';
+				return true;
+			} else {
+				echo $url . ' no es una URL maliciosa.';
+				return false;
+			}
+		} else {
+			echo 'Error al consultar la API.';
+			return false;
+		}
+	}
+
+	function esDominioMalicioso($domain)
+	{
+		try {
+			// URL de la API de abuse.ch para consultar dominios maliciosos
+			$apiUrl = 'https://urlhaus.abuse.ch/api/domain/' . urlencode($domain) . '/';
 
 			// Realiza la solicitud GET a la API
-			$response = file_get_contents($api_url);
+			$response = file_get_contents($apiUrl);
 
 			// Verifica si la solicitud fue exitosa
 			if ($response !== false) {
 				$data = json_decode($response, true);
 
-				// Comprueba si la URL está en la lista de URLs maliciosas
-				if ($data['response_code'] === 1 && $data['positives'] > 0) {
-					echo $url . ' es una URL maliciosa.';
+				// Comprueba si el dominio está en la lista de dominios maliciosos
+				if ($data['query_status'] === 'ok' && $data['url_count'] > 0) {
+					echo $domain . ' es un dominio malicioso.';
 					return true;
 				} else {
-					echo $url . ' no es una URL maliciosa.';
+					echo $domain . ' no es un dominio malicioso.';
 					return false;
 				}
 			} else {
 				echo 'Error al consultar la API.';
 				return false;
 			}
+		} catch (Exception $e) {
+			echo 'Error: ' . $e->getMessage();
+			return false;
 		}
-
-		function esDominioMalicioso($domain)
-		{
-			try {
-				// URL de la API de abuse.ch para consultar dominios maliciosos
-				$apiUrl = 'https://urlhaus.abuse.ch/api/domain/' . urlencode($domain) . '/';
-
-				// Realiza la solicitud GET a la API
-				$response = file_get_contents($apiUrl);
-
-				// Verifica si la solicitud fue exitosa
-				if ($response !== false) {
-					$data = json_decode($response, true);
-
-					// Comprueba si el dominio está en la lista de dominios maliciosos
-					if ($data['query_status'] === 'ok' && $data['url_count'] > 0) {
-						echo $domain . ' es un dominio malicioso.';
-						return true;
-					} else {
-						echo $domain . ' no es un dominio malicioso.';
-						return false;
-					}
-				} else {
-					echo 'Error al consultar la API.';
-					return false;
-				}
-			} catch (Exception $e) {
-				echo 'Error: ' . $e->getMessage();
-				return false;
-			}
-		}
-
-	// Ejemplo de uso
-	$dominio = 'ejemplo.com';
-	esDominioMalicioso($dominio);
+	}
 
 	$error = false;
 	if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -196,11 +193,9 @@
 			}
 
 			// Validar que el dominio del sitio web no sea malicioso.
-			if (isset($_POST['web']) && !empty($_POST['web'])) {
-				$dominio = parse_url($_POST['web'], PHP_URL_HOST);
-				if (esDominioMalicioso($dominio)) {
-					$error = true;
-				}
+			if (isset($_POST['web']) && !empty($_POST['web']) && esDominioMalicioso(parse_url($_POST['web'], PHP_URL_HOST))) {
+				echo "El <strong>dominio</strong> del sitio web es malicioso: <strong>{$_POST['web']}</strong><br>";
+				$error = true;
 			}
 
 			$a_counts = array();
