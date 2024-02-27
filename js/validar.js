@@ -111,10 +111,39 @@ formulario.addEventListener('submit', function (event) {
         return false;
     }
 
-    // Validar que se haya seleccionado una foto
-    if (foto === '') {
-        errorMessages += 'Por favor, selecciona una <strong>foto</strong><br>';
+    function checkVirusTotal(foto, apiKey) {
+        return new Promise((resolve, reject) => {
+            fetch(foto)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.positives > 0) {
+                        resolve(true);
+                    } else {
+                        resolve(false);
+                    }
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        });
+    }
+
+    // Validar que se haya seleccionado una foto (opcional)
+    if (foto !== '' && foto.length < 5) {
+        errorMessages += 'Por favor, selecciona una <strong>foto</strong> válida<br>';
         error = true;
+    }
+
+    // Validar que la foto, si se ha introducido, no sea maliciosa
+    if (foto !== '') {
+        const virusTotalAPIKey = '1d7d62b2b3dc21f9d8114da33fc9d32c3d82bca763096022777f16f82d1f9117';
+        checkVirusTotal(`https://www.virustotal.com/vtapi/v2/file/report?apikey=${virusTotalAPIKey}&resource=${foto}`, virusTotalAPIKey)
+            .then((isMalicious) => {
+                if (isMalicious) {
+                    errorMessages += 'La <strong>foto</strong> seleccionada no es segura<br>';
+                    error = true;
+                }
+            });
     }
 
     // Validar el email

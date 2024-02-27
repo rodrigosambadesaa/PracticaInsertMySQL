@@ -105,15 +105,10 @@
 		if ($num_variables >= 1) {
 			$edad_minima = 13; // Edad mínima para registrarse.
 
-			// Validar que se ha seleccionado una foto de perfil.
-			if (!isset($_FILES['foto']) || $_FILES['foto']['error'] !== 0) {
-				echo "Debes seleccionar una <strong>foto de perfil</strong><br>";
-				$error = true;
-			}
-
-			// Validar que la foto no sea maliciosa.
+			// Validar que se ha seleccionado una foto de perfil si se ha subido una.
 			if (isset($_FILES['foto']) && $_FILES['foto']['error'] === 0) {
-				if(checkVirusTotalFoto($_FILES['foto']['tmp_name'], 'API_KEY')) {
+				// Validar que la foto no sea maliciosa.
+				if (checkVirusTotalFoto($_FILES['foto']['tmp_name'], 'API_KEY')) {
 					echo "La <strong>foto de perfil</strong> es maliciosa<br>";
 					$error = true;
 				}
