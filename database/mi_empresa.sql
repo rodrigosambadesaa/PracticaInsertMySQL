@@ -79,6 +79,7 @@ CREATE TABLE IF NOT EXISTS `mi_empresa`.`usuario` (
     `estado_civil` char(1) COLLATE utf8_spanish_ci NOT NULL,
     `fecha_nacimiento` date NOT NULL,
     `web` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+    `sexo` char(1) COLLATE utf8_spanish_ci NOT NULL,
     `sobre_usuario` text COLLATE utf8_spanish_ci NOT NULL,
     PRIMARY KEY (`correo`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;

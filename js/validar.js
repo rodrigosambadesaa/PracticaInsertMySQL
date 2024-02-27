@@ -97,6 +97,7 @@ formulario.addEventListener('submit', function (event) {
     const estadoCivil = document.getElementById('estadoCivil').value.trim();
     const fechaNacimiento = document.getElementById('fecha_nacimiento').value.trim();
     const paginaWeb = document.getElementById('paginaWeb').value.trim();
+    const sexo = document.getElementById('sexo').value.trim();
     const terminos = document.getElementById('terminos').checked;
 
     let errorMessages = "";
@@ -301,6 +302,12 @@ formulario.addEventListener('submit', function (event) {
                     error = true;
                 }
             });
+    }
+
+    // Validar que se haya seleccionado un sexo
+    if (sexo === '' || sexo.length !== 1) {
+        errorMessages += 'Por favor, selecciona un <strong>sexo</strong><br>';
+        error = true;
     }
 
 

@@ -224,6 +224,12 @@
 				$error = true;
 			}
 
+			// Validar que se ha seleccionado el sexo.
+			if (!isset($_POST['sexo'])) {
+				echo "Debes seleccionar el <strong>sexo</strong><br>";
+				$error = true;
+			}
+
 			// Validar que el dominio del sitio web no sea malicioso.
 			if (isset($_POST['web']) && !empty($_POST['web']) && esDominioMalicioso(parse_url(trim($_POST['web']), PHP_URL_HOST))) {
 				echo "El <strong>dominio</strong> del sitio web es malicioso: <strong>{$_POST['web']}</strong><br>";
@@ -320,9 +326,10 @@
 				$estado_civil = trim($_POST['estado_civil']);
 				$fecha_nacimiento = trim($_POST['fecha_nacimiento']);
 				$web = trim($_POST['web']);
+				$sexo = trim($_POST['sexo']);
 				$sobre_usted = trim($_POST['sobre_usted']);
 
-				$sentencia_sql = "INSERT INTO `mi_empresa`.`usuarios` (`foto`, `correo`, `clave`, `nombre`, `calle`, `bloque`, `escalera`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`, `sobre_usted`) VALUES ('$foto', '$correo', '$clave', '$nombre', '$calle', '$bloque', '$escalera', '$numero', '$piso', '$poblacion', '$provincia', '$codigo_postal', '$estado_civil', '$fecha_nacimiento', '$web', '$sobre_usted');";
+				$sentencia_sql = "INSERT INTO `mi_empresa`.`usuarios` (`foto`, `correo`, `clave`, `nombre`, `calle`, `bloque`, `escalera`, `numero`, `piso`, `poblacion`, `provincia`, `codigo_postal`, `estado_civil`, `fecha_nacimiento`, `web`, `sexo`, `sobre_usted`) VALUES ('$foto', '$correo', '$clave', '$nombre', '$calle', '$bloque', '$escalera', '$numero', '$piso', '$poblacion', '$provincia', '$codigo_postal', '$estado_civil', '$fecha_nacimiento', '$web', '$sexo', '$sobre_usted');";
 
 				// Ejecutar la consulta de inserción
 				mysqli_query($conexion, $sentencia_sql) or die("<strong>Fallo en la inserción, causa:</strong> " . mysqli_error($conexion));
