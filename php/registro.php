@@ -10,6 +10,16 @@
 <body>
 	<?php
 
+	// Source: https://www.w3schools.com/php/php_form_validation.asp#:~:text=The%20htmlspecialchars()%20function%20converts,site%20Scripting%20attacks)%20in%20forms.
+
+	function test_input($data)
+	{
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
+
 	function hashSHA512($string)
 	{
 		return hash('sha512', $string);
@@ -33,32 +43,6 @@
 				return true;
 			} else {
 				echo $url . ' no es una URL maliciosa.';
-				return false;
-			}
-		} else {
-			echo 'Error al consultar la API.';
-			return false;
-		}
-	}
-
-	function checkVirusTotalFoto($foto, $api_key)
-	{
-		// URL de la API de VirusTotal para consultar archivos maliciosos
-		$api_url = 'https://www.virustotal.com/vtapi/v2/file/report?apikey=' . $api_key . '&resource=' . urlencode($foto);
-
-		// Realiza la solicitud GET a la API
-		$response = file_get_contents($api_url);
-
-		// Verifica si la solicitud fue exitosa
-		if ($response !== false) {
-			$data = json_decode($response, true);
-
-			// Comprueba si el archivo está en la lista de archivos maliciosos
-			if ($data['response_code'] === 1 && $data['positives'] > 0) {
-				echo $foto . ' es un archivo malicioso.';
-				return true;
-			} else {
-				echo $foto . ' no es un archivo malicioso.';
 				return false;
 			}
 		} else {
@@ -98,8 +82,8 @@
 		}
 	}
 
-	$error = false;
 	if ($_SERVER["REQUEST_METHOD"] === "POST") {
+		$error = false;
 		$num_variables = count($_POST); // Cuenta el número de variables recibidas por POST.
 		// Validación de los datos recibidos por POST.
 		if ($num_variables >= 1) {
@@ -108,68 +92,68 @@
 			// Validar que se ha seleccionado una foto de perfil si se ha subido una.
 			if (isset($_FILES['foto']) && $_FILES['foto']['error'] === 0) {
 				// Validar que la foto no sea maliciosa.
-				if (checkVirusTotalFoto($_FILES['foto']['tmp_name'], 'API_KEY')) {
+				if (checkVirusTotal($_FILES['foto']['tmp_name'], 'API_KEY')) {
 					echo "La <strong>foto de perfil</strong> es maliciosa<br>";
 					$error = true;
 				}
 			}
 
 			// Validar que el email no esté vacío, tenga entre 5 y 320 caracteres y sea un email válido.
-			if (!isset($_POST['correo']) || strlen(trim($_POST['correo'])) < 5 || strlen(trim($_POST['correo'])) > 320) {
+			if (test_input($_POST['correo']) === "" || strlen(test_input($_POST['correo'])) < 5 || strlen(test_input($_POST['correo'])) > 320 || !filter_var(test_input($_POST['correo']), FILTER_VALIDATE_EMAIL)) {
 				echo "El <strong>email</strong> debe tener entre 5 y 320 caracteres: {$_POST['correo']}<br>";
 				$error = true;
-			} elseif (filter_var($_POST['correo'], FILTER_VALIDATE_EMAIL) === false) {
+			} elseif (filter_var(test_input($_POST['correo']), FILTER_VALIDATE_EMAIL) === false) {
 				echo "Correo <strong>inválido</strong>: <strong>{$_POST['correo']}</strong><br>";
 				$error = true;
 			}
 
 			// Validar que las contraseñas sean hashes SHA-512 válidos.
-			if (!isset($_POST['clave']) || !isset($_POST['clave_repe']) || strlen(trim($_POST['clave'])) < 15 || strlen(trim($_POST['clave_repe'])) < 15) {
+			if (test_input($_POST['clave']) === "" || strlen(test_input($_POST['clave'])) < 15 || strlen(test_input($_POST['clave'])) > 128 || test_input($_POST['clave_repe']) === "" || strlen(test_input($_POST['clave_repe'])) < 15 || strlen(test_input($_POST['clave_repe'])) > 128) {
 				echo "Las <strong>contraseñas</strong> deben tener al menos 15 caracteres<br>";
 				$error = true;
-			} elseif (trim($_POST['clave']) !== trim($_POST['clave_repe'])) {
+			} elseif (test_input($_POST['clave']) !== test_input($_POST['clave_repe'])) {
 				echo "Las <strong>contraseñas</strong> no coinciden<br>";
 				$error = true;
 			}
 
 			// Validar que el nombre no esté vacío y tenga entre 3 y 80 caracteres.
-			if (!isset($_POST['nombre']) || strlen(trim($_POST['nombre'])) < 3 || strlen(trim($_POST['nombre'])) > 80) {
+			if (test_input($_POST['nombre']) === "" || strlen(test_input($_POST['nombre'])) < 3 || strlen(test_input($_POST['nombre'])) > 80) {
 				echo "El <strong>nombre</strong> debe tener entre 3 y 80 caracteres: {$_POST['nombre']}<br>";
 				$error = true;
 			}
 
 			// Validar que la calle no esté vacía y tenga entre 5 y 40 caracteres.
-			if (!isset($_POST['calle']) || strlen(trim($_POST['calle'])) < 5 || strlen(trim($_POST['calle'])) > 40) {
+			if (test_input($_POST['calle']) === "" || strlen(test_input($_POST['calle'])) < 5 || strlen(test_input($_POST['calle'])) > 40) {
 				echo "La <strong>calle</strong> debe tener entre 5 y 40 caracteres: {$_POST['calle']}<br>";
 				$error = true;
 			}
 
 			// Validar que el bloque, si se ha ingresado, tenga entre 1 y 3 caracteres.
-			if (isset($_POST['bloque']) && !empty($_POST['bloque']) && (strlen(trim($_POST['bloque'])) < 1 || strlen(trim($_POST['bloque'])) > 3)) {
+			if (test_input($_POST['bloque']) !== "" && (strlen(test_input($_POST['bloque'])) < 1 || strlen(test_input($_POST['bloque'])) > 3)) {
 				echo "El <strong>bloque</strong> debe tener entre 1 y 3 caracteres: {$_POST['bloque']}<br>";
 				$error = true;
 			}
 
 			// Validar que la escalera, si se ha ingresado, tenga entre 1 y 3 caracteres.
-			if (isset($_POST['escalera']) && !empty($_POST['escalera']) && (strlen(trim($_POST['escalera'])) < 1 || strlen(trim($_POST['escalera'])) > 3)) {
+			if (test_input($_POST['escalera']) !== "" && (strlen(test_input($_POST['escalera'])) < 1 || strlen(test_input($_POST['escalera'])) > 3)) {
 				echo "La <strong>escalera</strong> debe tener entre 1 y 3 caracteres: {$_POST['escalera']}<br>";
 				$error = true;
 			}
 
 			// Validar que el número no esté vacío y sea un entero positivo.
-			if (!isset($_POST['numero']) || !ctype_digit(trim($_POST['numero'])) || (int) trim($_POST['numero']) <= 0) {
-				echo "El <strong>número</strong> no es válido: {$_POST['numero']}<br>";
+			if (test_input($_POST['numero']) === "" || !ctype_digit(test_input($_POST['numero']))) {
+				echo "El <strong>número</strong> debe ser un valor entero: {$_POST['numero']}<br>";
 				$error = true;
 			}
 
 			// Validar que el piso, si se ha ingresado, tenga entre 3 y 20 caracteres.
-			if (isset($_POST['piso']) && !empty($_POST['piso']) && (strlen(trim($_POST['piso'])) < 3 || strlen(trim($_POST['piso'])) > 20)) {
+			if (test_input($_POST['piso']) !== "" && (strlen(test_input($_POST['piso'])) < 3 || strlen(test_input($_POST['piso'])) > 20)) {
 				echo "El <strong>piso</strong> debe tener entre 3 y 20 caracteres: {$_POST['piso']}<br>";
 				$error = true;
 			}
 
 			// Validar que la ciudad no esté vacía y tenga entre 3 y 40 caracteres.
-			if (!isset($_POST['poblacion']) || strlen(trim($_POST['poblacion'])) < 3 || strlen(trim($_POST['poblacion'])) > 40) {
+			if (test_input($_POST['poblacion']) === "" || strlen(test_input($_POST['poblacion'])) < 3 || strlen(test_input($_POST['poblacion'])) > 40) {
 				echo "La <strong>ciudad</strong> debe tener entre 3 y 40 caracteres: {$_POST['poblacion']}<br>";
 				$error = true;
 			}
@@ -187,8 +171,8 @@
 			}
 
 			// Validar que el código postal no esté vacío y sea un entero de 5 dígitos.
-			if (!isset($_POST['codigo_postal']) || !ctype_digit((int) trim($_POST['codigo_postal'])) || strlen(trim($_POST['codigo_postal'])) !== 5) {
-				echo "El <strong>código postal</strong> debe tener 5 dígitos: {$_POST['codigo_postal']}<br>";
+			if (test_input($_POST['codigo_postal']) === "" || strlen(test_input($_POST['codigo_postal'])) !== 5 || !ctype_digit(test_input($_POST['codigo_postal']))) {
+				echo "El <strong>código postal</strong> debe ser un valor entero de 5 dígitos: {$_POST['codigo_postal']}<br>";
 				$error = true;
 			}
 
@@ -219,8 +203,14 @@
 			}
 
 			// Validar que el sitio web, si se ha ingresado, sea una URL válida.
-			if (isset($_POST['web']) && !empty($_POST['web']) && filter_var(trim($_POST['web']), FILTER_VALIDATE_URL) === false) {
-				echo "El <strong>sitio web</strong> no es válido: <strong>{$_POST['web']}</strong><br>";
+			if (test_input($_POST['web']) !== "" && !filter_var(test_input($_POST['web']), FILTER_VALIDATE_URL)) {
+				echo "El <strong>sitio web</strong> no es válido: {$_POST['web']}<br>";
+				$error = true;
+			}
+
+			// Validar que el dominio del sitio web no sea malicioso.
+			if (test_input($_POST['web']) !== "" && esDominioMalicioso(parse_url(test_input($_POST['web'], PHP_URL_HOST)))) {
+				echo "El <strong>sitio web</strong> es malicioso<br>";
 				$error = true;
 			}
 
@@ -230,11 +220,6 @@
 				$error = true;
 			}
 
-			// Validar que el dominio del sitio web no sea malicioso.
-			if (isset($_POST['web']) && !empty($_POST['web']) && esDominioMalicioso(parse_url(trim($_POST['web']), PHP_URL_HOST))) {
-				echo "El <strong>dominio</strong> del sitio web es malicioso: <strong>{$_POST['web']}</strong><br>";
-				$error = true;
-			}
 
 			$a_counts = array();
 			if (isset($_POST['temas'])) {
@@ -254,8 +239,8 @@
 			}
 
 			// Validar que el campo "sobre ti" no esté vacío.
-			if (!isset($_POST['sobre_usted']) || strlen(trim($_POST['sobre_usted'])) === 0) {
-				echo "Debes completar el campo <strong>sobre ti</strong><br>";
+			if (test_input($_POST['sobre_usted']) === "") {
+				echo "El campo <strong>sobre ti</strong> no puede estar vacío<br>";
 				$error = true;
 			}
 

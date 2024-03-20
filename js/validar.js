@@ -14,6 +14,14 @@ function hashSHA512(s) {
     return new Hashes(s);
 }
 
+function test_input(data) {
+    data = data.trim();
+    data = data.replace(/\\/g, '');
+    data = data.replace(/</g, '&lt;');
+    data = data.replace(/>/g, '&gt;');
+    return data;
+}
+
 class Hashes {
 
     constructor() {
@@ -81,29 +89,29 @@ formulario.addEventListener('submit', function (event) {
     const edadMinima = 13;
 
     // Realizar las validaciones necesarias
-    const foto = document.getElementById('foto').value.trim();
-    const nombre = document.getElementById('nombre').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
-    const confirmPassword = document.getElementById('confirmPassword').value.trim();
-    const direccionCalle = document.getElementById('direccionCalle').value.trim();
-    const direccionBloque = document.getElementById('direccionBloque').value.trim();
-    const direccionEscalera = document.getElementById('direccionEscalera').value.trim();
-    const direccionNumero = document.getElementById('direccionNumero').value.trim();
-    const direccionPiso = document.getElementById('direccionPiso').value.trim();
-    const poblacion = document.getElementById('poblacion').value.trim();
-    const provincia = document.getElementById('provincia').value.trim();
-    const codigoPostal = document.getElementById('codigoPostal').value.trim();
-    const estadoCivil = document.getElementById('estadoCivil').value.trim();
-    const fechaNacimiento = document.getElementById('fecha_nacimiento').value.trim();
-    const paginaWeb = document.getElementById('paginaWeb').value.trim();
-    const sexo = document.getElementById('sexo').value.trim();
+    const foto = document.getElementById('foto').files[0];
+    const nombre = document.getElementById('nombre').value.test_input();
+    const email = document.getElementById('email').value.test_input();
+    const password = document.getElementById('password').value.test_input();
+    const confirmPassword = document.getElementById('confirmPassword').value.test_input();
+    const direccionCalle = document.getElementById('direccionCalle').value.test_input();
+    const direccionBloque = document.getElementById('direccionBloque').value.test_input();
+    const direccionEscalera = document.getElementById('direccionEscalera').value.test_input();
+    const direccionNumero = document.getElementById('direccionNumero').value.test_input();
+    const direccionPiso = document.getElementById('direccionPiso').value.test_input();
+    const poblacion = document.getElementById('poblacion').value.test_input();
+    const provincia = document.getElementById('provincia').value;
+    const codigoPostal = document.getElementById('codigoPostal').value.test_input();
+    const estadoCivil = document.getElementById('estadoCivil').value;
+    const fechaNacimiento = document.getElementById('fecha_nacimiento').value.test_input();
+    const paginaWeb = document.getElementById('paginaWeb').value.test_input();
+    const sexo = document.querySelector('input[name="sexo"]:checked');
     const terminos = document.getElementById('terminos').checked;
 
     let errorMessages = "";
     let error = false;
 
-    async function checkVirusTotal(url, apiKey) {
+    async function checkVirusTotal(url) {
         const response = await fetch(url);
         const data = await response.json();
         if (data.positives > 0) {
@@ -112,7 +120,7 @@ formulario.addEventListener('submit', function (event) {
         return false;
     }
 
-    function checkVirusTotal(foto, apiKey) {
+    function checkVirusTotal(foto) {
         return new Promise((resolve, reject) => {
             fetch(foto)
                 .then(response => response.json())
@@ -138,7 +146,7 @@ formulario.addEventListener('submit', function (event) {
     // Validar que la foto, si se ha introducido, no sea maliciosa
     if (foto !== '') {
         const virusTotalAPIKey = '1d7d62b2b3dc21f9d8114da33fc9d32c3d82bca763096022777f16f82d1f9117';
-        checkVirusTotal(`https://www.virustotal.com/vtapi/v2/file/report?apikey=${virusTotalAPIKey}&resource=${foto}`, virusTotalAPIKey)
+        checkVirusTotal(`https://www.virustotal.com/vtapi/v2/file/report?apikey=${virusTotalAPIKey}&resource=${foto}`)
             .then((isMalicious) => {
                 if (isMalicious) {
                     errorMessages += 'La <strong>foto</strong> seleccionada no es segura<br>';
@@ -295,7 +303,7 @@ formulario.addEventListener('submit', function (event) {
         }
 
         const virusTotalAPIKey = '1d7d62b2b3dc21f9d8114da33fc9d32c3d82bca763096022777f16f82d1f9117';
-        checkVirusTotal(`https://www.virustotal.com/vtapi/v2/url/report?apikey=${virusTotalAPIKey}&resource=${paginaWeb}`, virusTotalAPIKey)
+        checkVirusTotal(`https://www.virustotal.com/vtapi/v2/url/report?apikey=${virusTotalAPIKey}&resource=${paginaWeb}`)
             .then((isMalicious) => {
                 if (isMalicious) {
                     errorMessages += 'La <strong>página web</strong> introducida no es segura<br>';
@@ -305,7 +313,7 @@ formulario.addEventListener('submit', function (event) {
     }
 
     // Validar que se haya seleccionado un sexo
-    if (sexo === '' || sexo.length !== 1) {
+    if (!sexo) {
         errorMessages += 'Por favor, selecciona un <strong>sexo</strong><br>';
         error = true;
     }
