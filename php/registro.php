@@ -165,7 +165,7 @@
 			}
 
 			// Validar que la provincia sea un entero.
-			if (!ctype_digit((int) trim($_POST['provincia']))) {
+			if (!ctype_digit($_POST['provincia'])) {
 				echo "La <strong>provincia</strong> debe ser un valor entero: {$_POST['provincia']}<br>";
 				$error = true;
 			}
